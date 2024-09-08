@@ -7,13 +7,23 @@ using namespace std;
 
 int main() {
     Menu menu;
-
     char continueOrdering;
-    do {
+
+    do
+    {
         menu.selectOption();
         cout << "Do you want to add more options? (y/n): ";
         cin >> continueOrdering;
-    } while (continueOrdering == 'y');
+
+        if (continueOrdering != 'y')
+        {
+            do
+            {
+                cout << "Choose yes or no (y/n): ";
+                cin >> continueOrdering;
+            } while (continueOrdering != 'y' && continueOrdering != 'n');
+        }
+    } while (continueOrdering != 'n');
 
     menu.finishOrder();
 

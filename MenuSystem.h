@@ -15,6 +15,16 @@ public:
 
     public:
         MenuOption(const std::string& optionName, double optionPrice) : name(optionName), price(optionPrice) {}
+
+        std::string GetName()
+        {
+            return name;
+        }
+
+        double GetPrice()
+        {
+            return price;
+        }
     };
 
     Menu();
@@ -35,7 +45,7 @@ private:
         explicit Category(const std::string& categoryName);
         void addOption(const std::string& optionName, double optionPrice);
         void displayOptions() const;
-        MenuOption* getOption(size_t index) const;
+        MenuOption* getOption(int index) const;
     };
 
     class Order 
