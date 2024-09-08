@@ -1,0 +1,7 @@
+﻿  Main.cpp
+  MenuSystem.cpp
+  Создание кода...
+D:\универ с++\семестр 3\Coffee house software\ConsoleApplication1\MenuSystem.cpp(3,18): error C2011: MenuSystem: переопределение типа "class"
+  D:\универ с++\семестр 3\Coffee house software\ConsoleApplication1\MenuSystem.h(10,7):
+   см. объявление "MenuSystem"
+  
