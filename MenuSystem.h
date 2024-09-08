@@ -10,15 +10,15 @@ using namespace std;
 class MenuSystem {
 public:
     struct MenuItem {
-        std::string name;
+        string name;
         double price;
 
-        MenuItem(const string& itemName, double itemPrice);
+        MenuItem(const string& itemName, double itemPrice) : name(itemName), price(itemPrice) {}
     };
 
     MenuSystem();
     void addCategory(const string& categoryName);
-    void addMenuItemToCategory(const string& categoryName, const string& itemName, double price);
+    void addMenuItemToCategory(const string& categoryName, const string& itemName, double price) const;
     void displayMenu() const;
     void selectItem();
     void finishOrder() const;

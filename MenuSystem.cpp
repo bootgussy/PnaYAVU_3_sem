@@ -2,12 +2,6 @@
 
 using namespace std;
 
-MenuSystem::MenuItem::MenuItem(const string& itemName, double itemPrice)
-{
-    name = itemName;
-    price = itemPrice;
-}
-
 MenuSystem::MenuSystem() {
     addCategory("Drinks");
     addCategory("Desserts");
@@ -22,7 +16,7 @@ void MenuSystem::addCategory(const string& categoryName) {
     categories.push_back(new Category(categoryName));
 }
 
-void MenuSystem::addMenuItemToCategory(const string& categoryName, const string& itemName, double price) {
+void MenuSystem::addMenuItemToCategory(const string& categoryName, const string& itemName, double price) const {
     for (auto& category : categories) {
         if (category->name == categoryName) {
             category->addItem(itemName, price);
@@ -46,7 +40,7 @@ void MenuSystem::selectItem() {
     cin >> categoryChoice;
 
     if (categoryChoice > 0 && static_cast<size_t>(categoryChoice) <= categories.size()) {
-        Category* selectedCategory = categories[categoryChoice - 1];
+        Category* const selectedCategory = categories[categoryChoice - 1];
         selectedCategory->displayItems();
         int itemChoice;
         cout << "Select item (enter number): ";
@@ -74,7 +68,7 @@ void MenuSystem::finishOrder() const {
 }
 
 MenuSystem::~MenuSystem() {
-    for (auto category : categories) {
+    for (auto* category : categories) {
         delete category;
     }
 }
@@ -100,7 +94,7 @@ MenuSystem::MenuItem* MenuSystem::Category::getItem(size_t index) const {
 }
 
 MenuSystem::Category::~Category() {
-    for (auto item : items) {
+    for (auto* item : items) {
         delete item;
     }
 }
