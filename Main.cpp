@@ -15,13 +15,10 @@ int main() {
         cout << "Do you want to add more options? (y/n): ";
         cin >> continueOrdering;
 
-        if (continueOrdering != 'y')
+        while (continueOrdering != 'y' && continueOrdering != 'n')
         {
-            do
-            {
-                cout << "Choose yes or no (y/n): ";
-                cin >> continueOrdering;
-            } while (continueOrdering != 'y' && continueOrdering != 'n');
+            cout << "Choose yes or no (y/n): ";
+            cin >> continueOrdering;
         }
     } while (continueOrdering != 'n');
 

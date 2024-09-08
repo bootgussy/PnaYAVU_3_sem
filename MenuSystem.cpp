@@ -48,7 +48,7 @@ void Menu::selectOption()
     cout << "Select category (enter number): ";
     cin >> categoryChoice;
 
-    if (categoryChoice > 0 && static_cast<int>(categoryChoice) <= categories.size()) 
+    if (categoryChoice > 0 && categoryChoice <= categories.size()) 
     {
         Category const* const selectedCategory = categories[categoryChoice - 1];
         selectedCategory->displayOptions();

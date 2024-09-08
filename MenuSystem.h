@@ -16,12 +16,12 @@ public:
     public:
         MenuOption(const std::string& optionName, double optionPrice) : name(optionName), price(optionPrice) {}
 
-        std::string GetName()
+        std::string GetName() const
         {
             return name;
         }
 
-        double GetPrice()
+        double GetPrice() const
         {
             return price;
         }
