@@ -5,20 +5,18 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class MenuSystem {
 public:
     struct MenuItem {
-        string name;
+        std::string name;
         double price;
 
-        MenuItem(const string& itemName, double itemPrice) : name(itemName), price(itemPrice) {}
+        MenuItem(const std::string& itemName, double itemPrice) : name(itemName), price(itemPrice) {}
     };
 
     MenuSystem();
-    void addCategory(const string& categoryName);
-    void addMenuItemToCategory(const string& categoryName, const string& itemName, double price) const;
+    void addCategory(const std::string& categoryName);
+    void addMenuItemToCategory(const std::string& categoryName, const std::string& itemName, double price) const;
     void displayMenu() const;
     void selectItem();
     void finishOrder() const;
@@ -26,24 +24,24 @@ public:
 private:
     class Category {
     public:
-        string name;
-        vector<MenuItem*> items;
+        std::string name;
+        std::vector<MenuItem*> items;
 
-        Category(const string& categoryName);
-        void addItem(const string& itemName, double itemPrice);
+        Category(const std::string& categoryName);
+        void addItem(const std::string& itemName, double itemPrice);
         void displayItems() const;
         MenuItem* getItem(size_t index) const;
     };
 
     class Order {
     public:
-        vector<MenuItem*> orderedItems;
+        std::vector<MenuItem*> orderedItems;
         double totalCost = 0.0;
 
         void addItem(MenuItem* item);
     };
 
-    vector<Category*> categories;
+    std::vector<Category*> categories;
     Order order;
 };
 
