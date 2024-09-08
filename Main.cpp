@@ -6,15 +6,15 @@
 using namespace std; 
 
 int main() {
-    MenuSystem menuSystem;
+    Menu menu;
     char continueOrdering;
     do {
-        menuSystem.selectItem();
+        menu.selectOption();
         cout << "Do you want to add more items? (y/n): ";
         cin >> continueOrdering;
     } while (continueOrdering == 'y');
 
-    menuSystem.finishOrder();
+    menu.finishOrder();
 
     return 0;
 }
