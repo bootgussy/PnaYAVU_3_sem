@@ -40,7 +40,7 @@ void MenuSystem::selectItem() {
     cin >> categoryChoice;
 
     if (categoryChoice > 0 && static_cast<size_t>(categoryChoice) <= categories.size()) {
-        Category* const selectedCategory = categories[categoryChoice - 1];
+        Category const* const selectedCategory = categories[categoryChoice - 1];
         selectedCategory->displayItems();
         int itemChoice;
         cout << "Select item (enter number): ";
@@ -67,12 +67,6 @@ void MenuSystem::finishOrder() const {
     cout << "Total: $" << order.totalCost << '\n';
 }
 
-MenuSystem::~MenuSystem() {
-    for (auto* category : categories) {
-        delete category;
-    }
-}
-
 MenuSystem::Category::Category(const string& categoryName) : name(categoryName) {}
 
 void MenuSystem::Category::addItem(const string& itemName, double itemPrice) {
@@ -91,12 +85,6 @@ MenuSystem::MenuItem* MenuSystem::Category::getItem(size_t index) const {
         return items[index];
     }
     return nullptr;
-}
-
-MenuSystem::Category::~Category() {
-    for (auto* item : items) {
-        delete item;
-    }
 }
 
 void MenuSystem::Order::addItem(MenuItem* item) {

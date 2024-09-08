@@ -22,7 +22,6 @@ public:
     void displayMenu() const;
     void selectItem();
     void finishOrder() const;
-    ~MenuSystem();
 
 private:
     class Category {
@@ -34,7 +33,6 @@ private:
         void addItem(const string& itemName, double itemPrice);
         void displayItems() const;
         MenuItem* getItem(size_t index) const;
-        ~Category();
     };
 
     class Order {
