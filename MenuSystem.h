@@ -27,7 +27,7 @@ private:
         std::string name;
         std::vector<MenuItem*> items;
 
-        Category(const std::string& categoryName);
+        explicit Category(const std::string& categoryName);
         void addItem(const std::string& itemName, double itemPrice);
         void displayItems() const;
         MenuItem* getItem(size_t index) const;
