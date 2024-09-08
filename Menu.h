@@ -1,5 +1,5 @@
-#ifndef MENUSYSTEM_H
-#define MENUSYSTEM_H
+#ifndef MENU_H
+#define MENU_H
 
 #include <iostream>
 #include <string>
