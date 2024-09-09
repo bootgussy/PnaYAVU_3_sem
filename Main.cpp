@@ -20,8 +20,6 @@ int main() {
             cout << "Choose yes or no (y/n): ";
             cin >> continueOrdering;
         }
-
-        cout << endl;
     } while (continueOrdering != 'n');
 
     menu.finishOrder();
