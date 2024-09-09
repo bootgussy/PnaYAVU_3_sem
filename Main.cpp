@@ -1,9 +1,9 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 #include <string>
 #include "Menu.h"
 
-using namespace std; 
+using namespace std;
 
 int main() {
     Menu menu;
@@ -20,6 +20,8 @@ int main() {
             cout << "Choose yes or no (y/n): ";
             cin >> continueOrdering;
         }
+
+        cout << endl;
     } while (continueOrdering != 'n');
 
     menu.finishOrder();

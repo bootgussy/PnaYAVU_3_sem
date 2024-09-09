@@ -5,10 +5,10 @@
 #include <string>
 #include <vector>
 
-class Menu 
+class Menu
 {
 public:
-    class MenuOption 
+    class MenuOption
     {
         std::string name;
         double price;
@@ -36,7 +36,7 @@ public:
     void finishOrder() const;
 
 private:
-    class Category 
+    class Category
     {
     public:
         std::string name;
@@ -48,7 +48,7 @@ private:
         MenuOption* getOption(int index) const;
     };
 
-    class Order 
+    class Order
     {
     public:
         std::vector<MenuOption*> orderedOptions;
