@@ -1,5 +1,4 @@
-#ifndef MENU_H
-#define MENU_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -60,5 +59,3 @@ private:
     std::vector<Category*> categories;
     Order order;
 };
-
-#endif
