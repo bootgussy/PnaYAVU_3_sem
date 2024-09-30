@@ -127,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="src/main.cpp" />
+    <ClCompile Include="src/Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Menu.h" />
+    <ClInclude Include="src/Menu.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
