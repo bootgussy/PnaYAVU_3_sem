@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+# My files
+
+*.vcxproj.filters
+*.vcxproj.user
+*.cd
+x64/
