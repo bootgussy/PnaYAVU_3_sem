@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="Category.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -138,6 +139,13 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuOption.h" />
     <ClInclude Include="Order.h" />
+=======
+    <ClCompile Include="src/main.cpp" />
+    <ClCompile Include="src/Menu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src/Menu.h" />
+>>>>>>> 1d8c228f0c910e9fe5c0ddc10ccd48f3ab473035
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
@@ -145,4 +153,8 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+<<<<<<< HEAD
 </Project>
+=======
+</Project>
+>>>>>>> 1d8c228f0c910e9fe5c0ddc10ccd48f3ab473035

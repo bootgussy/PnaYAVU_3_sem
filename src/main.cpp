@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Main.cpp
 ﻿#include <iostream>
 #include <vector>
 #include <string>
@@ -51,3 +52,35 @@ int main() {
 
     return 0;
 }
+=======
+﻿#include <iostream>
+#include <vector>
+#include <string>
+#include "Menu.h"
+
+using namespace std;
+
+int main() {
+    Menu menu;
+    char continueOrdering;
+
+    do
+    {
+        menu.selectOption();
+        cout << "Do you want to add more options? (y/n): ";
+        cin >> continueOrdering;
+
+        while (continueOrdering != 'y' && continueOrdering != 'n')
+        {
+            cout << "Choose yes or no (y/n): ";
+            cin >> continueOrdering;
+        }
+
+        cout << endl;
+    } while (continueOrdering != 'n');
+
+    menu.finishOrder();
+
+    return 0;
+}
+>>>>>>> 1d8c228f0c910e9fe5c0ddc10ccd48f3ab473035:src/main.cpp
