@@ -83,35 +83,29 @@ void Menu::finishOrder() const
     cout << "Total: $" << order.totalCost << '\n';
 }
 
-Menu::Category::Category(const string& categoryName) : name(categoryName) {}
-
-void Menu::Category::addOption(const string& optionName, double optionPrice)
+void Menu::deleteOption()
 {
-    options.push_back(new MenuOption(optionName, optionPrice));
-}
+    int deleteChoice;
+    int optionNumber = 0;
 
-void Menu::Category::displayOptions() const
-{
-    cout << "Category: " << name << "\n";
-    for (int i = 0; i < options.size(); ++i)
+    cout << "Your order:\n";
+    for (const auto& option : order.orderedOptions)
     {
-        cout << i + 1 << ". " << options[i]->GetName() << " - $" << options[i]->GetPrice() << '\n';
+        ++optionNumber;
+        cout << optionNumber << ". " << option->GetName() << " : $" << option->GetPrice() << '\n';
     }
-}
 
-Menu::MenuOption* Menu::Category::getOption(int index) const
-{
-    if (index < options.size())
+    cout << "Select the option to remove:\n";
+    cin >> deleteChoice;
+
+    while (deleteChoice < 1 || deleteChoice > order.orderedOptions.size())
     {
-        return options[index];
+        cout << "Error. Please enter a valid option number:\n";
+        cin >> deleteChoice;
     }
-    return nullptr;
-}
 
-void Menu::Order::addOption(MenuOption* option)
-{
-    if (option) {
-        orderedOptions.push_back(option);
-        totalCost += option->GetPrice();
-    }
+    cout << endl;
+
+    order.totalCost -= order.orderedOptions[deleteChoice - 1]->GetPrice();
+    order.orderedOptions.erase(order.orderedOptions.begin() + deleteChoice - 1);
 }
