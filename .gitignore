@@ -33,7 +33,10 @@
 
 # My files
 
+*.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
 *.cd
-x64/
+*.db
+x64/Release/
+
