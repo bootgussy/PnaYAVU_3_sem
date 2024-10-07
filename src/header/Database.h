@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 #include <sqlite3.h>
-#include "Account.h"
-#include "MenuOption.h"
+#include "../header/Account.h"
+#include "../header/MenuOption.h"
 
 class Database
 {

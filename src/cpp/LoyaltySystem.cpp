@@ -1,29 +1,13 @@
-#include "LoyaltySystem.h"
-#include "Account.h"
-#include "Menu.h"
-#include "Database.h"
+#include "../header/LoyaltySystem.h"
+#include "../header/Account.h"
+#include "../header/Menu.h"
+#include "../header/Database.h"
 #include <iostream>
 #include <sqlite3.h>
 
 LoyaltySystem::LoyaltySystem()
 {
 
-}
-
-void operator+=(std::shared_ptr<Account>& account, int addedPoints) 
-{
-    if (account) 
-    {
-        *account += addedPoints;
-    }
-}
-
-void operator-=(std::shared_ptr<Account>& account, int usedPoints)
-{
-    if (account)
-    {
-        *account -= usedPoints;
-    }
 }
 
 std::shared_ptr<Account> LoyaltySystem::logIn()
@@ -102,18 +86,19 @@ void LoyaltySystem::redeemPoints(std::shared_ptr<Account> account, double totalC
             std::cin >> pointsToRedeem;
         }
 
-        account -= pointsToRedeem;
+        *account -= pointsToRedeem;
         totalCost -= pointsToRedeem;
 
         std::cout << pointsToRedeem << " points redeemed.\n";
         std::cout << "New total cost: $" << totalCost << '\n';
     }
-    else {
+    else 
+    {
         std::cout << "You have no loyalty points to redeem.\n";
     }
 
     int pointsEarned = round(totalCost * 0.1);
-    account += pointsEarned;
+    *account += pointsEarned;
     std::cout << "Points earned: " << pointsEarned << std::endl;
     std::cout << "Current loyalty points: " << account->getPoints() << std::endl;
 

@@ -1,4 +1,4 @@
-#include "MenuOption.h"
+#include "../header/MenuOption.h"
 
 MenuOption::MenuOption(const std::string& optionName, double optionPrice)
     : name(optionName), price(optionPrice) {}

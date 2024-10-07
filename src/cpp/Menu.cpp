@@ -1,8 +1,7 @@
-#include "Menu.h"
-#include "Category.h"
-#include "Order.h"
-#include "Database.h"
-#include "MenuOption.h"
+#include "../header/Menu.h"
+#include "../header/Order.h"
+#include "../header/Database.h"
+#include "../header/MenuOption.h"
 #include <vector>
 #include <sqlite3.h>
 

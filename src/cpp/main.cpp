@@ -1,12 +1,11 @@
 ﻿#include <iostream>
 #include <vector>
 #include <string>
-#include "Menu.h"
-#include "Order.h"
-#include "Category.h"
-#include "MenuOption.h"
-#include "LoyaltySystem.h"
-#include "Database.h"
+#include "../header/Menu.h"
+#include "../header/Order.h"
+#include "../header/MenuOption.h"
+#include "../header/LoyaltySystem.h"
+#include "../header/Database.h"
 
 using namespace std;
 

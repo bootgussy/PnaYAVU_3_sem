@@ -12,5 +12,4 @@ public:
     std::string getName() const;
     double getPrice() const;
     bool operator!=(const MenuOption& right);
-    friend MenuOption Database::getOption(int categoryId, int optionId);
 };

@@ -3,10 +3,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Order.h"
-#include "Category.h"
-#include "Database.h"
-#include <vector>
+#include "../header/Order.h"
+#include "../header/Database.h"
 
 class Menu
 {
@@ -22,7 +20,6 @@ public:
 
 private:
     Order order;
-    std::vector<Category*> categories;
     sqlite3* database = Database::getInstance()->getDatabase();
     sqlite3_stmt* stmt;
     std::vector<int> numOptionInDB;

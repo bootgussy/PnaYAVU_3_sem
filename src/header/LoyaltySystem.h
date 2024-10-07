@@ -1,10 +1,11 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "Account.h"
-#include "Database.h"
+#include "../header/Account.h"
+#include "../header/Database.h"
 
-class LoyaltySystem {
+class LoyaltySystem 
+{
 private:
     sqlite3* database = Database::getInstance()->getDatabase();
     sqlite3_stmt* stmt;

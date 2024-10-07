@@ -1,6 +1,6 @@
-#include "Database.h"
-#include "LoyaltySystem.h"
-#include "MenuOption.h"
+#include "../header/Database.h"
+#include "../header/LoyaltySystem.h"
+#include "../header/MenuOption.h"
 
 Database::Database()
 {
@@ -201,7 +201,7 @@ std::string Database::getCategory(int categoryId)
 	return "NULL";
 }
 
-friend MenuOption Database::getOption(int categoryId, int optionId)
+MenuOption Database::getOption(int categoryId, int optionId)
 {
 	sqlite3* DB = getDatabase();
 	sqlite3_stmt* stmt;

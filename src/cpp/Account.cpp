@@ -1,4 +1,4 @@
-#include "Account.h"
+#include "../header/Account.h"
 
 Account::Account(const std::string& accountLogin, const std::string& accountPassword, int accountPoints)
     : login(accountLogin), password(accountPassword), points(accountPoints) {}
@@ -23,10 +23,10 @@ int Account::getPoints() const
     return points;
 }
 
-void Account::operator+=(int addedPoints) {
-    points += addedPoints;
+void operator+=(Account& account, int addedPoints) {
+    account.points += addedPoints;
 }
 
-void Account::operator-=(int usedPoints) {
-    points -= usedPoints;
+void operator-=(Account& account, int usedPoints) {
+    account.points -= usedPoints;
 }

@@ -18,6 +18,6 @@ public:
 	std::string getPassword() const;
 	int getPoints() const;
 
-	void operator+=(int addedPoints);
-	void operator-=(int usedPoints);
+	friend void operator+=(Account& account, int addedPoints);
+	friend void operator-=(Account& account, int usedPoints);
 };
