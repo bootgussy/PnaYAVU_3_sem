@@ -131,23 +131,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Account.cpp" />
-    <ClCompile Include="Category.cpp" />
-    <ClCompile Include="Database.cpp" />
-    <ClCompile Include="LoyaltySystem.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MenuOption.cpp" />
-    <ClCompile Include="Order.cpp" />
+    <ClCompile Include="src\cpp\Account.cpp" />
+    <ClCompile Include="src\cpp\Category.cpp" />
+    <ClCompile Include="src\cpp\Database.cpp" />
+    <ClCompile Include="src\cpp\LoyaltySystem.cpp" />
+    <ClCompile Include="src\cpp\main.cpp" />
+    <ClCompile Include="src\cpp\Menu.cpp" />
+    <ClCompile Include="src\cpp\MenuOption.cpp" />
+    <ClCompile Include="src\cpp\Order.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Account.h" />
-    <ClInclude Include="Category.h" />
-    <ClInclude Include="Database.h" />
-    <ClInclude Include="LoyaltySystem.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="MenuOption.h" />
-    <ClInclude Include="Order.h" />
+    <ClInclude Include="src\h\Account.h" />
+    <ClInclude Include="src\h\Category.h" />
+    <ClInclude Include="src\h\Database.h" />
+    <ClInclude Include="src\h\LoyaltySystem.h" />
+    <ClInclude Include="src\h\Menu.h" />
+    <ClInclude Include="src\h\MenuOption.h" />
+    <ClInclude Include="src\h\Order.h" />
     <ClInclude Include="SQLite\sqlite3.h" />
   </ItemGroup>
   <ItemGroup>
