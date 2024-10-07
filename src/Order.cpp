@@ -1,9 +1,9 @@
 #include "Order.h"
 
-void Order::addOption(MenuOption* option)
+void Order::addOption(MenuOption option)
 {
-    if (option) {
+    if (&option) {
         orderedOptions.push_back(option);
-        totalCost += option->GetPrice();
+        totalCost += option.getPrice();
     }
 }

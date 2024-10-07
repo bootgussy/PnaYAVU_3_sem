@@ -5,8 +5,8 @@
 class Order
 {
 public:
-    std::vector<MenuOption*> orderedOptions;
+    std::vector<MenuOption> orderedOptions;
     double totalCost = 0.0;
 
-    void addOption(MenuOption* item);
+    void addOption(MenuOption item);
 };

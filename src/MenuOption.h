@@ -8,6 +8,9 @@ class MenuOption
 
 public:
     MenuOption(const std::string& optionName, double optionPrice);
-    std::string GetName() const;
-    double GetPrice() const;
+    MenuOption();
+    std::string getName() const;
+    double getPrice() const;
+    bool operator!=(const MenuOption& right);
+    friend MenuOption Database::getOption(int categoryId, int optionId);
 };

@@ -11,6 +11,6 @@ public:
 
     explicit Category(const std::string& categoryName);
     void addOption(const std::string& optionName, double optionPrice);
-    void displayOptions() const;
+    void displayOptions(int id);
     MenuOption* getOption(int index) const;
 };

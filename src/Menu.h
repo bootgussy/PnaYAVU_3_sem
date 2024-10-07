@@ -3,22 +3,27 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Category.h"
 #include "Order.h"
+#include "Category.h"
+#include "Database.h"
+#include <vector>
 
 class Menu
 {
 public:
     Menu();
 
-    void addCategory(const std::string& categoryName);
-    void addOptionToCategory(const std::string& categoryName, const std::string& optionName, double price) const;
-    void displayMenu() const;
+    void displayMenu();
     void selectOption();
+    void displayOptions(int id);
     void finishOrder() const;
+    double GetOrderTotalCost() const;
     void deleteOption();
 
 private:
-    std::vector<Category*> categories;
     Order order;
+    std::vector<Category*> categories;
+    sqlite3* database = Database::getInstance()->getDatabase();
+    sqlite3_stmt* stmt;
+    std::vector<int> numOptionInDB;
 };

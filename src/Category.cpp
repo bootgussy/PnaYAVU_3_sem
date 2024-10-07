@@ -1,4 +1,5 @@
 #include "Category.h"
+#include "MenuOption.h"
 #include <iostream>
 
 using namespace std;
@@ -10,12 +11,12 @@ void Category::addOption(const string& optionName, double optionPrice)
     options.push_back(new MenuOption(optionName, optionPrice));
 }
 
-void Category::displayOptions() const
+void Category::displayOptions(int id)
 {
     cout << "Category: " << name << "\n";
     for (int i = 0; i < options.size(); ++i)
     {
-        cout << i + 1 << ". " << options[i]->GetName() << " - $" << options[i]->GetPrice() << '\n';
+        cout << i + 1 << ". " << options[i]->getName() << " - $" << options[i]->getPrice() << '\n';
     }
 }
 
