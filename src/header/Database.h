@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <sqlite3.h>
+#include <../../SQLite/sqlite3.h>
 #include "../header/Account.h"
 #include "../header/MenuOption.h"
 

@@ -3,7 +3,7 @@
 #include "../header/Database.h"
 #include "../header/MenuOption.h"
 #include <vector>
-#include <sqlite3.h>
+#include <../../SQLite/sqlite3.h>
 
 using namespace std;
 
