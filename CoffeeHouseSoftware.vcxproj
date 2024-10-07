@@ -118,26 +118,41 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\универ с++\семестр 3\CoffeeHouseSoftware\CoffeeHouseSoftware\SQLite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\универ с++\семестр 3\CoffeeHouseSoftware\CoffeeHouseSoftware\SQLite;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src/Category.cpp" />
-    <ClCompile Include="src/main.cpp" />
-    <ClCompile Include="src/Menu.cpp" />
-    <ClCompile Include="src/MenuOption.cpp" />
-    <ClCompile Include="src/Order.cpp" />
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="Category.cpp" />
+    <ClCompile Include="Database.cpp" />
+    <ClCompile Include="LoyaltySystem.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuOption.cpp" />
+    <ClCompile Include="Order.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src/Category.h" />
-    <ClInclude Include="src/Menu.h" />
-    <ClInclude Include="src/MenuOption.h" />
-    <ClInclude Include="src/Order.h" />
+    <ClInclude Include="Account.h" />
+    <ClInclude Include="Category.h" />
+    <ClInclude Include="Database.h" />
+    <ClInclude Include="LoyaltySystem.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuOption.h" />
+    <ClInclude Include="Order.h" />
+    <ClInclude Include="SQLite\sqlite3.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

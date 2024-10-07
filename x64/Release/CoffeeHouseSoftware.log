@@ -1,1 +1,30 @@
-﻿  CoffeeHouseSoftware.vcxproj -> D:\универ с++\семестр 3\CoffeeHouseSoftware\x64\Release\CoffeeHouseSoftware.exe
+﻿  Category.cpp
+D:\универ с++\семестр 3\CoffeeHouseSoftware\CoffeeHouseSoftware\MenuOption.h(15,23): error C2653: Database: не является именем класса или пространства имен
+  (компиляция исходного файла "Category.cpp")
+  
+  Database.cpp
+D:\универ с++\семестр 3\CoffeeHouseSoftware\CoffeeHouseSoftware\MenuOption.h(15,23): error C2653: Database: не является именем класса или пространства имен
+  (компиляция исходного файла "Database.cpp")
+  
+D:\универ с++\семестр 3\CoffeeHouseSoftware\CoffeeHouseSoftware\Database.cpp(204,1): error C2255: friend: не допускается вне определения класса
+  LoyaltySystem.cpp
+D:\универ с++\семестр 3\CoffeeHouseSoftware\CoffeeHouseSoftware\MenuOption.h(15,23): error C2653: Database: не является именем класса или пространства имен
+  (компиляция исходного файла "LoyaltySystem.cpp")
+  
+D:\универ с++\семестр 3\CoffeeHouseSoftware\CoffeeHouseSoftware\LoyaltySystem.cpp(115,22): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  Menu.cpp
+D:\универ с++\семестр 3\CoffeeHouseSoftware\CoffeeHouseSoftware\MenuOption.h(15,23): error C2653: Database: не является именем класса или пространства имен
+  (компиляция исходного файла "Menu.cpp")
+  
+  MenuOption.cpp
+D:\универ с++\семестр 3\CoffeeHouseSoftware\CoffeeHouseSoftware\MenuOption.h(15,23): error C2653: Database: не является именем класса или пространства имен
+  (компиляция исходного файла "MenuOption.cpp")
+  
+  Order.cpp
+D:\универ с++\семестр 3\CoffeeHouseSoftware\CoffeeHouseSoftware\MenuOption.h(15,23): error C2653: Database: не является именем класса или пространства имен
+  (компиляция исходного файла "Order.cpp")
+  
+  main.cpp
+D:\универ с++\семестр 3\CoffeeHouseSoftware\CoffeeHouseSoftware\MenuOption.h(15,23): error C2653: Database: не является именем класса или пространства имен
+  (компиляция исходного файла "main.cpp")
+  
