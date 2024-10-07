@@ -127,34 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <ClCompile Include="Category.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MenuOption.cpp" />
-    <ClCompile Include="Order.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Category.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="MenuOption.h" />
-    <ClInclude Include="Order.h" />
-=======
+    <ClCompile Include="src/Category.cpp" />
     <ClCompile Include="src/main.cpp" />
     <ClCompile Include="src/Menu.cpp" />
+    <ClCompile Include="src/MenuOption.cpp" />
+    <ClCompile Include="src/Order.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src/Category.h" />
     <ClInclude Include="src/Menu.h" />
->>>>>>> 1d8c228f0c910e9fe5c0ddc10ccd48f3ab473035
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClInclude Include="src/MenuOption.h" />
+    <ClInclude Include="src/Order.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-<<<<<<< HEAD
 </Project>
-=======
-</Project>
->>>>>>> 1d8c228f0c910e9fe5c0ddc10ccd48f3ab473035
