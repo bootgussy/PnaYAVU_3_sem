@@ -137,7 +137,7 @@
     <ClInclude Include="src/header/Menu.h" />
     <ClInclude Include="src/header/MenuOption.h" />
     <ClInclude Include="src/header/Order.h" />
-    <ClInclude Include="SQLite/sqlite3.h" />
+    <ClInclude Include="SQLite\sqlite3.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
