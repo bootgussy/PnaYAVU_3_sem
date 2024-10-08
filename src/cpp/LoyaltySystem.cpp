@@ -3,7 +3,7 @@
 #include "../header/Menu.h"
 #include "../header/Database.h"
 #include <iostream>
-#include <../../SQLite/sqlite3.h>
+#include <sqlite3.h>
 
 LoyaltySystem::LoyaltySystem()
 {

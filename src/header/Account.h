@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <../../SQLite/sqlite3.h>
+#include <sqlite3.h>
 
 class Account
 {
