@@ -178,7 +178,6 @@
     <ClCompile Include="src/cpp/Menu.cpp" />
     <ClCompile Include="src/cpp/MenuOption.cpp" />
     <ClCompile Include="src/cpp/Order.cpp" />
-    <ClCompile Include="SQLite/sqlite3.c" />
   </ItemGroup>
 
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
