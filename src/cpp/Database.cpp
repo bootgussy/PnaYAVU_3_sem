@@ -204,24 +204,24 @@ std::string Database::getCategory(int categoryId)
 
 MenuOption Database::getOption(int categoryId, int optionId)
 {
-	sqlite3* DB = getDatabase();
-	sqlite3_stmt* stmt;
+	sqlite3* db = getDatabase();
+	sqlite3_stmt* statement;
 	std::string searchOptionSQL = "SELECT * FROM OPTIONS WHERE CATEGORY_ID = ? AND ID = ?;";
-	sqlite3_prepare_v2(DB, searchOptionSQL.c_str(), -1, &stmt, nullptr);
+	sqlite3_prepare_v2(db, searchOptionSQL.c_str(), -1, &statement, nullptr);
 
-	sqlite3_bind_int(stmt, 1, categoryId);
-	sqlite3_bind_int(stmt, 2, optionId);
+	sqlite3_bind_int(statement, 1, categoryId);
+	sqlite3_bind_int(statement, 2, optionId);
 
-	if (sqlite3_step(stmt) == SQLITE_ROW)
+	if (sqlite3_step(statement) == SQLITE_ROW)
 	{
 		MenuOption option(
-			reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)),
-		    sqlite3_column_double(stmt, 2)
+			reinterpret_cast<const char*>(sqlite3_column_text(statement, 1)),
+		    sqlite3_column_double(statement, 2)
 		);
-		sqlite3_finalize(stmt);
+		sqlite3_finalize(statement);
 		return option;
 	}
-	sqlite3_finalize(stmt);
+	sqlite3_finalize(statement);
 	return MenuOption();
 }
 
