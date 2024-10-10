@@ -18,7 +18,7 @@ Menu::Menu()
     Database::getInstance()->addOptionToCategory("Desserts", "Tiramisu", 5.0);
 }
 
-void Menu::displayMenu()
+void Menu::displayMenu() const
 {
     int categoryId = 1;
 

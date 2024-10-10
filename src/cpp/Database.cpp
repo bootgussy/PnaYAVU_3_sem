@@ -110,7 +110,7 @@ Account Database::getAccount(const std::string& login, const std::string& passwo
 	return Account();
 }
 
-void Database::updateAccount(std::string login, int points)
+void Database::updateAccount(const std::string& login, int points)
 {
 	std::string searchLoginSQL = "UPDATE ACCOUNTS SET POINTS = ? WHERE LOGIN = ?;";
 	sqlite3_prepare_v2(DB, searchLoginSQL.c_str(), -1, &stmt, nullptr);

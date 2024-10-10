@@ -11,5 +11,5 @@ public:
     MenuOption();
     std::string getName() const;
     double getPrice() const;
-    bool operator!=(const MenuOption& right);
+    bool operator!=(const MenuOption& right) const;
 };

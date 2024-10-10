@@ -15,5 +15,5 @@ public:
     LoyaltySystem();
     std::shared_ptr<Account>  logIn();
     std::shared_ptr<Account>  signIn();
-    void redeemPoints(std::shared_ptr<Account> account, double totalCost);
+    void redeemPoints(std::shared_ptr<Account> account, double totalCost) const;
 };

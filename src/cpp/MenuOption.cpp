@@ -3,10 +3,7 @@
 MenuOption::MenuOption(const std::string& optionName, double optionPrice)
     : name(optionName), price(optionPrice) {}
 
-MenuOption::MenuOption()
-{
-
-}
+MenuOption::MenuOption() = default;
 
 std::string MenuOption::getName() const
 {
@@ -18,7 +15,7 @@ double MenuOption::getPrice() const
     return price;
 }
 
-bool MenuOption::operator!=(const MenuOption& right) {
+bool MenuOption::operator!=(const MenuOption& right) const{
     if (this->getName() == right.getName() && this->getPrice() == right.getPrice())
     {
         return false;

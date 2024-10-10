@@ -11,7 +11,7 @@ class Menu
 public:
     Menu();
 
-    void displayMenu();
+    void displayMenu() const;
     void selectOption();
     void displayOptions(int id);
     void finishOrder() const;

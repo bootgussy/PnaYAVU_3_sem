@@ -68,7 +68,7 @@ std::shared_ptr<Account> LoyaltySystem::signIn()
     }
 }
 
-void LoyaltySystem::redeemPoints(std::shared_ptr<Account> account, double totalCost)
+void LoyaltySystem::redeemPoints(std::shared_ptr<Account> account, double totalCost) const
 {
     std::cout << "Your current loyalty points: " << account->getPoints() << '\n';
 

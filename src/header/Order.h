@@ -8,5 +8,5 @@ public:
     std::vector<MenuOption> orderedOptions;
     double totalCost = 0.0;
 
-    void addOption(MenuOption item);
+    void addOption(const MenuOption& item);
 };

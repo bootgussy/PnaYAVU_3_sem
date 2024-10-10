@@ -8,7 +8,6 @@
 class Database
 {
 public:
-	Database(const std::string& databaseName);
 	Database();
 	~Database();
 
@@ -21,7 +20,7 @@ public:
 
 	bool addAccount(const std::string& login, const std::string& password, int points);
 	Account getAccount(const std::string& login, const std::string& password);
-	void updateAccount(std::string login, int points);
+	void updateAccount(const std::string& login, int points);
 
 	bool addCategory(const std::string& category);
 	bool addOptionToCategory(const std::string& category, const std::string& option, double price);
