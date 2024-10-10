@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <sqlite3.h>
+#include <memory>
 #include "../header/Account.h"
 #include "../header/MenuOption.h"
 

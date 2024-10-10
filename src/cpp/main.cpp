@@ -98,7 +98,7 @@ int main() {
 
     cout << '\n';
 
-    loyaltySystem.redeemPoints(currentAccount, menu.GetOrderTotalCost());
+    loyaltySystem.redeemPoints(std::shared_ptr<Account>(currentAccount), menu.GetOrderTotalCost());
 
     return 0;
 }

@@ -5,7 +5,7 @@
 #include "../header/Account.h"
 #include "../header/Database.h"
 
-class LoyaltySystem 
+class LoyaltySystem
 {
 private:
     sqlite3* database = Database::getInstance()->getDatabase();

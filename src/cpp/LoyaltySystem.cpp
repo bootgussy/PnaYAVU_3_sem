@@ -18,9 +18,7 @@ std::shared_ptr<Account> LoyaltySystem::logIn()
     std::cout << "Enter password: ";
     std::cin >> password;
 
-    Account account = Database::getInstance()->getAccount(login, password);
-
-    if (account.getLogin() == login)
+    if (Account account = Database::getInstance()->getAccount(login, password); account.getLogin() == login)
     {
         return std::make_shared<Account>(account);
     }
