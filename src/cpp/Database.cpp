@@ -17,13 +17,13 @@ Database::~Database()
 	sqlite3_close(DB);
 }
 
-Database* Database::instance = nullptr;
+std::unique_ptr<Database> Database::instance = nullptr;
 
 Database* Database::getInstance() {
 	if (instance == nullptr) {
-		instance = new Database();
+		instance = std::make_unique<Database>();
 	}
-	return instance;
+	return instance.get();
 }
 
 void Database::createTableAccounts()

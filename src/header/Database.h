@@ -11,6 +11,9 @@ public:
 	Database();
 	~Database();
 
+	Database(const Database&) = delete;
+	Database& operator=(const Database&) = delete;
+
 	static Database* getInstance();
 
 	void createTableAccounts();
@@ -32,6 +35,6 @@ public:
 
 private:
 	sqlite3* DB;
-	static Database* instance;
+	static std::unique_ptr<Database> instance;
 	sqlite3_stmt* stmt;
 };
