@@ -3,10 +3,7 @@
 Account::Account(const std::string& accountLogin, const std::string& accountPassword, int accountPoints)
     : login(accountLogin), password(accountPassword), points(accountPoints) {}
 
-Account::Account()
-{
-
-}
+Account::Account() = default;
 
 std::string Account::getLogin() const
 {
