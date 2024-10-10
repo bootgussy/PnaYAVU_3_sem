@@ -37,6 +37,5 @@
 *.vcxproj.filters
 *.vcxproj.user
 *.cd
-*.db
 x64/Release/
 
