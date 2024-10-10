@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <memory>
 #include "../header/Account.h"
 #include "../header/Database.h"
 

@@ -3,13 +3,14 @@
 #include "../header/Menu.h"
 #include "../header/Database.h"
 #include <iostream>
+#include <cmath>
 #include <sqlite3.h>
 
 LoyaltySystem::LoyaltySystem()
 {
 
 }
-
+ 
 std::shared_ptr<Account> LoyaltySystem::logIn()
 {
     std::string login;
