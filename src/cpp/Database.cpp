@@ -110,7 +110,7 @@ Account Database::getAccount(const std::string& login, const std::string& passwo
 	return Account();
 }
 
-void Database::updateAccount(const std::string login, int points)
+void Database::updateAccount(std::string login, int points)
 {
 	std::string searchLoginSQL = "UPDATE ACCOUNTS SET POINTS = ? WHERE LOGIN = ?;";
 	sqlite3_prepare_v2(DB, searchLoginSQL.c_str(), -1, &stmt, nullptr);
@@ -189,14 +189,16 @@ bool Database::addOptionToCategory(const std::string& category, const std::strin
 std::string Database::getCategory(int categoryId)
 {
 	std::string searchCategorySQL = "SELECT * FROM CATEGORIES WHERE ID = ?;";
+	std::string category;
 	sqlite3_prepare_v2(DB, searchCategorySQL.c_str(), -1, &stmt, nullptr);
 
 	sqlite3_bind_int(stmt, 1, categoryId);
 
 	if (sqlite3_step(stmt) == SQLITE_ROW)
 	{
-		return reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+		category = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
 		sqlite3_finalize(stmt);
+		return category;
 	}
 	sqlite3_finalize(stmt);
 	return "NULL";

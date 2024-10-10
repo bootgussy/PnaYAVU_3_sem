@@ -6,10 +6,7 @@
 #include <cmath>
 #include <sqlite3.h>
 
-LoyaltySystem::LoyaltySystem()
-{
-
-}
+LoyaltySystem::LoyaltySystem() = default;
  
 std::shared_ptr<Account> LoyaltySystem::logIn()
 {
@@ -21,7 +18,7 @@ std::shared_ptr<Account> LoyaltySystem::logIn()
     std::cout << "Enter password: ";
     std::cin >> password;
 
-    Account account = Database::getInstance()->getAccount(login, password);
+    auto account = Database::getInstance()->getAccount(login, password);
 
     if (account.getLogin() == login)
     {
