@@ -34,7 +34,7 @@ void Database::createTableAccounts()
 		"LOGIN TEXT NOT NULL, "
 		"PASSWORD TEXT NOT NULL, "
 		"POINTS INT NOT NULL);";
-	sqlite3_exec(DB, createTableAccountsSQL, nullptr, 0, nullptr);
+	sqlite3_exec(DB, createTableAccountsSQL, nullptr, nullptr, nullptr);
 }
 
 void Database::createTableMenu()
@@ -43,7 +43,7 @@ void Database::createTableMenu()
 		"CREATE TABLE IF NOT EXISTS CATEGORIES ("
 		"ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 		"NAME TEXT NOT NULL);";
-	sqlite3_exec(DB, createTableCategoriesSQL, nullptr, 0, nullptr);
+	sqlite3_exec(DB, createTableCategoriesSQL, nullptr, nullptr, nullptr);
 
 	const char* createTableOptionsSQL =
 		"CREATE TABLE IF NOT EXISTS OPTIONS ("
@@ -52,7 +52,7 @@ void Database::createTableMenu()
 		"PRICE REAL NOT NULL,"
 		"CATEGORY_ID INTEGER,"
 		"FOREIGN KEY(CATEGORY_ID) REFERENCES CATEGORIES(ID));";
-	sqlite3_exec(DB, createTableOptionsSQL, nullptr, 0, nullptr);
+	sqlite3_exec(DB, createTableOptionsSQL, nullptr, nullptr, nullptr);
 }
 
 sqlite3* Database::getDatabase()
@@ -89,9 +89,9 @@ bool Database::addAccount(const std::string& login, const std::string& password,
 
 Account Database::getAccount(const std::string& login, const std::string& password)
 {
-	sqlite3* DB = getDatabase();
+	sqlite3* db = getDatabase();
 	std::string searchUserSQL = "SELECT * FROM ACCOUNTS WHERE LOGIN = ? AND PASSWORD = ?;";
-	sqlite3_prepare_v2(DB, searchUserSQL.c_str(), -1, &stmt, nullptr);
+	sqlite3_prepare_v2(db, searchUserSQL.c_str(), -1, &stmt, nullptr);
 
 	sqlite3_bind_text(stmt, 1, login.c_str(), -1, SQLITE_STATIC);
 	sqlite3_bind_text(stmt, 2, password.c_str(), -1, SQLITE_STATIC);
@@ -127,7 +127,7 @@ void Database::updateAccount(const std::string login, int points)
 bool Database::addCategory(const std::string& category)
 {
 	std::string searchCategorySQL = "SELECT * FROM CATEGORIES WHERE NAME = ?; ";
-	sqlite3_prepare_v2(DB, searchCategorySQL.c_str(), -1, &stmt, NULL);
+	sqlite3_prepare_v2(DB, searchCategorySQL.c_str(), -1, &stmt, nullptr);
 
 	sqlite3_bind_text(stmt, 1, category.c_str(), -1, SQLITE_STATIC);
 
@@ -139,7 +139,7 @@ bool Database::addCategory(const std::string& category)
 	else
 	{
 		std::string insertCategorySQL = "INSERT INTO CATEGORIES (NAME) VALUES(?);";
-		sqlite3_prepare_v2(DB, insertCategorySQL.c_str(), -1, &stmt, NULL);
+		sqlite3_prepare_v2(DB, insertCategorySQL.c_str(), -1, &stmt, nullptr);
 
 		sqlite3_bind_text(stmt, 1, category.c_str(), -1, SQLITE_STATIC);
 
