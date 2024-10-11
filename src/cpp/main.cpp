@@ -71,7 +71,6 @@ int main() {
             cout << "Choose yes or no (y/n): ";
             cin >> continueOrdering;
         }
-
         cout << '\n';
     } while (continueOrdering != 'n');
 

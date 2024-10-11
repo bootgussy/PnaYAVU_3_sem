@@ -41,7 +41,6 @@ void Menu::selectOption()
     if (categoryChoice > 0 && categoryChoice <= Database::getInstance()->categoriesSize())
     {
         displayOptions(categoryChoice);
-
         int optionChoice;
         cout << "Select option (enter number): ";
         cin >> optionChoice;
