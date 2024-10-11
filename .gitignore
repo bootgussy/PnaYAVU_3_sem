@@ -33,7 +33,9 @@
 
 # My files
 
+*.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
 *.cd
-x64/
+x64/Release/
+
