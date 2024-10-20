@@ -2,23 +2,59 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <functional>
 #include "../header/Menu.h"
 #include "../header/Order.h"
 #include "../header/MenuOption.h"
 #include "../header/LoyaltySystem.h"
 #include "../header/Database.h"
+#include "../header/Person.h"
+#include "../header/Buyer.h"
+#include "../header/Manager.h"
+#include "../header/Admin.h"
 
 using namespace std;
 
+void discounts(function<void()> addDiscounts, function<void()> removeDiscounts)
+{
+    char continueChanging;
+    int discountOperation;
+
+    cout << "Types of operations" << endl;
+    cout << "1. Add discount to option" << endl;
+    cout << "2. Remove discount from option" << endl;
+
+    cout << "Choose operation: ";
+    cin >> discountOperation;
+
+    while (discountOperation < 1 || discountOperation > 2)
+    {
+        cout << "Please, write correct number (1-2): ";
+        cin >> discountOperation;
+    }
+
+    switch (discountOperation)
+    {
+    case 1:
+        addDiscounts();
+        break;
+    case 2:
+        removeDiscounts();
+        break;
+    }
+}
+
 int main() {
     Menu menu;
-    LoyaltySystem loyaltySystem;
-
+    Account account;
+    Order order;
     std::shared_ptr<Account> currentAccount = nullptr;
+
     char hasAccount;
-    char needRepeatLogIn;
     char continueOrdering;
+    char needRepeatLogIn;
     char needDeleteOption;
+    std::string role;
 
     cout << "Do you have an account? (y/n): ";
     cin >> hasAccount;
@@ -31,7 +67,7 @@ int main() {
 
     if (hasAccount == 'y')
     {
-        currentAccount = loyaltySystem.logIn();
+        currentAccount = account.logIn();
         while (!currentAccount && hasAccount != 'n')
         {
             cout << "Log in failed. Want to try again? (y/n): ";
@@ -44,60 +80,171 @@ int main() {
 
             if (needRepeatLogIn == 'y')
             {
-                currentAccount = loyaltySystem.logIn();
+                currentAccount = account.logIn();
             }
             else
             {
                 hasAccount = 'n';
-                currentAccount = loyaltySystem.signIn();
+                currentAccount = account.signIn();
             }
         }
     }
     else
     {
-        currentAccount = loyaltySystem.signIn();
+        currentAccount = account.signIn();
     }
 
     cout << '\n';
 
-    do
-    {
-        menu.selectOption();
-        cout << "Do you want to add more options? (y/n): ";
-        cin >> continueOrdering;
+    role = std::shared_ptr<Account>(currentAccount)->getRole();
 
-        while (continueOrdering != 'y' && continueOrdering != 'n')
+    if (role == "Buyer")
+    {
+        Buyer buyer;
+        do
         {
-            cout << "Choose yes or no (y/n): ";
+            order = menu.addToOrder(order);
+            cout << "Do you want to add more options? (y/n): ";
             cin >> continueOrdering;
-        }
-        cout << '\n';
-    } while (continueOrdering != 'n');
 
-    do
-    {
-        cout << "Do you want to delete any option? (y/n): ";
-        cin >> needDeleteOption;
+            while (continueOrdering != 'y' && continueOrdering != 'n')
+            {
+                cout << "Choose yes or no (y/n): ";
+                cin >> continueOrdering;
+            }
 
-        while (needDeleteOption != 'y' && needDeleteOption != 'n')
+            cout << '\n';
+        } while (continueOrdering != 'n');
+
+        do
         {
-            cout << "Choose yes or no (y/n): ";
+            cout << "Do you want to delete any option? (y/n): ";
             cin >> needDeleteOption;
-        }
 
-        if (needDeleteOption == 'y')
+            while (needDeleteOption != 'y' && needDeleteOption != 'n')
+            {
+                cout << "Choose yes or no (y/n): ";
+                cin >> needDeleteOption;
+            }
+
+            if (needDeleteOption == 'y')
+            {
+                order = menu.deleteOption(order);
+            }
+        } while (needDeleteOption != 'n');
+
+        cout << '\n';
+
+        menu.finishOrder(order);
+
+        cout << '\n';
+
+        buyer.redeemPoints(std::shared_ptr<Account>(currentAccount), menu.GetOrderTotalCost(order));
+    }
+    else if (role == "Manager")
+    {
+        Manager manager;
+        int managerSelection;
+
+        do
         {
-            menu.deleteOption();
-        }
-    } while (needDeleteOption != 'n');
-    
-    cout << '\n';
+            cout << "Types of operations" << endl;
+            cout << "1. Change option price" << endl;
+            cout << "2. Work with discounts" << endl;
+            cout << "3. Add combo" << endl;
+            cout << "4. Add category to menu" << endl;
+            cout << "5. Add option to category" << endl;
+            cout << "6. Remove option from menu" << endl;
+            cout << "7. Exit" << endl;
 
-    menu.finishOrder();
+            cout << "Choose operation: ";
+            cin >> managerSelection;
 
-    cout << '\n';
+            while (managerSelection < 1 || managerSelection > 7)
+            {
+                cout << "Please, write correct number (1-7): ";
+                cin >> managerSelection;
+            }
 
-    loyaltySystem.redeemPoints(std::shared_ptr<Account>(currentAccount), menu.GetOrderTotalCost());
+            switch (managerSelection)
+            {
+            case 1:
+                manager.changePrice();
+                break;
+            case 2:
+                discounts([&manager]() { manager.addDiscounts(); }, [&manager]() { manager.removeDiscounts(); });
+                break;
+            case 3:
+                manager.addCombo();
+                break;
+            case 4:
+                manager.addCategoryToMenu();
+                break;
+            case 5:
+                manager.addOptionToCategory();
+                break;
+            case 6:
+                manager.removeOptionFromMenu();
+                break;
+            case 7:
+                break;
+            }
+        } while (managerSelection != 7);
+    }
+    else if (role == "Admin")
+    {
+        Admin admin;
+        int adminSelection;
+
+        do
+        {
+            cout << "Types of operations" << endl;
+            cout << "1. Change option price" << endl;
+            cout << "2. Work with discounts" << endl;
+            cout << "3. Add combo" << endl;
+            cout << "4. Add category to menu" << endl;
+            cout << "5. Add option to category" << endl;
+            cout << "6. Remove option from menu" << endl;
+            cout << "7. Change role" << endl;
+            cout << "8. Exit" << endl;
+
+            cout << "Choose operation: ";
+            cin >> adminSelection;
+
+            while (adminSelection < 1 || adminSelection > 8)
+            {
+                cout << "Please, write correct number (1-8): ";
+                cin >> adminSelection;
+            }
+
+            switch (adminSelection)
+            {
+            case 1:
+                admin.changePrice();
+                break;
+            case 2:
+                discounts([&admin]() { admin.addDiscounts(); }, [&admin]() { admin.removeDiscounts(); });
+                break;
+            case 3:
+                admin.addCombo();
+                break;
+            case 4:
+                admin.addCategoryToMenu();
+                break;
+            case 5:
+                admin.addOptionToCategory();
+                break;
+            case 6:
+                admin.removeOptionFromMenu();
+                break;
+            case 7:
+                admin.changeRole();
+                break;
+            case 8:
+                break;
+            }
+        } while (adminSelection != 8);
+    }
 
     return 0;
 }

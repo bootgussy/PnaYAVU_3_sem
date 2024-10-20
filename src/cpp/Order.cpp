@@ -2,9 +2,8 @@
 
 void Order::addOption(const MenuOption& option)
 {
-    if (&option) 
-    {
+    if (&option) {
         orderedOptions.push_back(option);
-        totalCost += option.getPrice();
+        totalCost += option.getPrice() - (option.getPrice() / 100.0 * option.getDiscount());
     }
 }

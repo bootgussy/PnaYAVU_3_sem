@@ -3,20 +3,21 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "../header/Order.h"
-#include "../header/Database.h"
+#include "Order.h"
+#include "Database.h"
 
 class Menu
 {
 public:
     Menu();
 
-    void displayMenu() const;
-    void selectOption();
+    std::vector<int> displayMenu() const;
+    MenuOption selectOption();
+    Order addToOrder(Order& order);
     void displayOptions(int id);
-    void finishOrder() const;
-    double GetOrderTotalCost() const;
-    void deleteOption();
+    void finishOrder(Order& order) const;
+    double GetOrderTotalCost(Order& order) const;
+    Order deleteOption(Order order);
 
 private:
     Order order;

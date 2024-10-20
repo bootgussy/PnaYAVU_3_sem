@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -Iheader -Wall -std=c++17
 LDFLAGS = -lsqlite3
-SOURCES = cpp/main.cpp cpp/Account.cpp cpp/Database.cpp cpp/LoyaltySystem.cpp cpp/Menu.cpp cpp/MenuOption.cpp cpp/Order.cpp
+SOURCES = cpp/main.cpp cpp/Account.cpp cpp/Database.cpp cpp/LoyaltySystem.cpp cpp/Menu.cpp cpp/MenuOption.cpp cpp/Order.cpp cpp/Buyer.cpp cpp/Manager.cpp cpp/Admin.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 TARGET = my_program
 

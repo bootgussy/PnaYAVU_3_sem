@@ -1,14 +1,14 @@
-#include "../header/LoyaltySystem.h"
-#include "../header/Account.h"
-#include "../header/Menu.h"
-#include "../header/Database.h"
-#include <iostream>
+#include <string>
 #include <cmath>
-#include <sqlite3.h>
+#include "../header/Buyer.h"
 
-LoyaltySystem::LoyaltySystem() = default;
+Buyer::Buyer() = default;
 
-void LoyaltySystem::redeemPoints(std::shared_ptr<Account> account, double totalCost) const
+std::string Buyer::getRole () const {
+    return "Buyer";
+}
+
+void Buyer::redeemPoints(std::shared_ptr<Account> account, double totalCost) const
 {
     std::cout << "Your current loyalty points: " << account->getPoints() << '\n';
 
@@ -30,7 +30,7 @@ void LoyaltySystem::redeemPoints(std::shared_ptr<Account> account, double totalC
         std::cout << pointsToRedeem << " points redeemed.\n";
         std::cout << "New total cost: $" << totalCost << '\n';
     }
-    else 
+    else
     {
         std::cout << "You have no loyalty points to redeem.\n";
     }
