@@ -81,8 +81,7 @@ MenuOption Menu::selectOption()
 
 Order Menu::addToOrder(Order& order)
 {
-    MenuOption option = selectOption();
-    if (option != MenuOption())
+    if (MenuOption option = selectOption(); option != MenuOption())
     {
         order.addOption(option);
     }
