@@ -345,12 +345,33 @@ void Database::setDiscount(const std::string& name, int newDiscount)
 	sqlite3_finalize(stmt);
 }
 
-void Database::deleteOption(const std::string& name)
+void Database::deleteCategory(int categoryId)
 {
-	std::string searchOptionSQL = "DELETE FROM OPTIONS WHERE NAME = ?;";
-	sqlite3_prepare_v2(DB, searchOptionSQL.c_str(), -1, &stmt, nullptr);
+	std::string deleteCategorySQL = "DELETE FROM OPTIONS WHERE CATEGORY_ID = ?;";
+	sqlite3_prepare_v2(DB, deleteCategorySQL.c_str(), -1, &stmt, nullptr);
 
-	sqlite3_bind_text(stmt, 1, name.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_int(stmt, 1, categoryId);
+
+	sqlite3_step(stmt);
+
+	sqlite3_finalize(stmt);
+
+	deleteCategorySQL = "DELETE FROM CATEGORIES WHERE ID = ?;";
+	sqlite3_prepare_v2(DB, deleteCategorySQL.c_str(), -1, &stmt, nullptr);
+
+	sqlite3_bind_int(stmt, 1, categoryId);
+
+	sqlite3_step(stmt);
+
+	sqlite3_finalize(stmt);
+}
+
+void Database::deleteOption(const std::string& optionName)
+{
+	std::string deleteOptionSQL = "DELETE FROM OPTIONS WHERE NAME = ?;";
+	sqlite3_prepare_v2(DB, deleteOptionSQL.c_str(), -1, &stmt, nullptr);
+
+	sqlite3_bind_text(stmt, 1, optionName.c_str(), -1, SQLITE_STATIC);
 
 	sqlite3_step(stmt);
 

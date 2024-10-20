@@ -176,7 +176,7 @@ void Manager::addCategoryToMenu() const
     {
         if (Database::getInstance()->addCategory(categoryName))
         {
-            std::cout << "Category added to menu succesfully!" << std::endl;
+            std::cout << "Category added to menu successfully!" << std::endl;
         }
         else
         {
@@ -194,51 +194,89 @@ void Manager::addCategoryToMenu() const
 void Manager::addOptionToCategory() const
 {
     Menu menu;
+    std::vector<int> categories;
     std::string optionName;
     int optionPrice;
     char needAddOption;
 
-    menu.displayMenu();
+    categories = menu.displayMenu();
 
     int categoryChoice;
     std::cout << "Select category (enter number): ";
     std::cin >> categoryChoice;
 
-    if (categoryChoice > 0 && categoryChoice <= Database::getInstance()->categoriesSize())
+    while (categoryChoice < 1 || categoryChoice > Database::getInstance()->categoriesSize())
     {
-        std::cout << "Enter name of option: ";
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::getline(std::cin, optionName);
-        std::cout << "Enter price of option: ";
-        std::cin >> optionPrice;
+        std::cout << "Enter correct number (1-" << Database::getInstance()->categoriesSize() << "): ";
+        std::cin >> categoryChoice;
+    }
 
-        std::cout << "Are you sure you want to add option to category " << Database::getInstance()->getCategory(categoryChoice) << "? (y/n): ";
+    std::cout << "Enter name of option: ";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::getline(std::cin, optionName);
+    std::cout << "Enter price of option: ";
+    std::cin >> optionPrice;
+
+    std::cout << "Are you sure you want to add option to category " << Database::getInstance()->getCategory(categories[categoryChoice - 1]) << "? (y/n): ";
+    std::cin >> needAddOption;
+    while (needAddOption != 'y' && needAddOption != 'n')
+    {
+        std::cout << "Choose yes or no (y/n): ";
         std::cin >> needAddOption;
-        while (needAddOption != 'y' && needAddOption != 'n')
-        {
-            std::cout << "Choose yes or no (y/n): ";
-            std::cin >> needAddOption;
-        }
+    }
 
-        if (needAddOption == 'y')
+    if (needAddOption == 'y')
+    {
+        if (Database::getInstance()->addOptionToCategory(Database::getInstance()->getCategory(categories[categoryChoice - 1]), optionName, optionPrice, 0))
         {
-            if (Database::getInstance()->addOptionToCategory(Database::getInstance()->getCategory(categoryChoice), optionName, optionPrice, 0))
-            {
-                std::cout << "Option " << optionName << " succesfully added to category " << Database::getInstance()->getCategory(categoryChoice) << "!" << std::endl;
-            }
-            else
-            {
-                std::cout << "Option " << optionName << " is already in category " << Database::getInstance()->getCategory(categoryChoice) << std::endl;
-            }
+            std::cout << "Option " << optionName << " successfully added to category " << Database::getInstance()->getCategory(categories[categoryChoice - 1]) << "!" << std::endl;
         }
         else
         {
-            std::cout << "Adding was canceled" << std::endl;
+            std::cout << "Option " << optionName << " is already in category " << Database::getInstance()->getCategory(categoryChoice) << std::endl;
         }
     }
     else
     {
-        std::cout << "Invalid category selection!" << std::endl;
+        std::cout << "Adding was canceled" << std::endl;
+    }
+}
+
+void Manager::removeCategoryFromMenu() const
+{
+    Menu menu;
+    std::vector<int> categories;
+    char needRemoveCategory;
+
+    categories = menu.displayMenu();
+
+    int categoryChoice;
+    std::cout << "Select category (enter number): ";
+    std::cin >> categoryChoice;
+
+    while (categoryChoice < 1 || categoryChoice > Database::getInstance()->categoriesSize())
+    {
+        std::cout << "Enter correct number (1-" << Database::getInstance()->categoriesSize() << "): ";
+        std::cin >> categoryChoice;
+    }
+
+    std::cout << "Are you sure you want to remove category " << Database::getInstance()->getCategory(categories[categoryChoice - 1]) << "? (y/n): ";
+    std::cin >> needRemoveCategory;
+    while (needRemoveCategory != 'y' && needRemoveCategory != 'n')
+    {
+        std::cout << "Choose yes or no (y/n): ";
+        std::cin >> needRemoveCategory;
+    }
+
+    if (needRemoveCategory == 'y')
+    {
+        std::string categoryName = Database::getInstance()->getCategory(categories[categoryChoice - 1]);
+        Database::getInstance()->deleteCategory(categories[categoryChoice - 1]);
+        std::cout << "Category " << categoryName << " successfully removed from menu!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Adding was canceled" << std::endl;
     }
 }
 
@@ -267,7 +305,7 @@ void Manager::removeOptionFromMenu() const
         if (needDeleteOption == 'y')
         {
             Database::getInstance()->deleteOption(name);
-            std::cout << "Option " << name << " succesfully removed from menu!" << std::endl;
+            std::cout << "Option " << name << " successfully removed from menu!" << std::endl;
         }
         else
         {

@@ -21,5 +21,6 @@ public:
 	void addCombo() const;
 	void addCategoryToMenu() const;
 	void addOptionToCategory() const;
+	void removeCategoryFromMenu() const;
 	void removeOptionFromMenu() const;
 };
