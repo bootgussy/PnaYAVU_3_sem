@@ -152,15 +152,16 @@ void managerMenu()
         cout << "3. Add combo" << endl;
         cout << "4. Add category to menu" << endl;
         cout << "5. Add option to category" << endl;
-        cout << "6. Remove option from menu" << endl;
-        cout << "7. Exit" << endl;
+        cout << "6. Remove category from menu" << endl;
+        cout << "7. Remove option from menu" << endl;
+        cout << "8. Exit" << endl;
 
         cout << "Choose operation: ";
         cin >> managerSelection;
 
-        while (managerSelection < 1 || managerSelection > 7)
+        while (managerSelection < 1 || managerSelection > 8)
         {
-            cout << "Please, write correct number (1-7): ";
+            cout << "Please, write correct number (1-8): ";
             cin >> managerSelection;
         }
 
@@ -182,14 +183,17 @@ void managerMenu()
             manager.addOptionToCategory();
             break;
         case 6:
-            manager.removeOptionFromMenu();
+            manager.removeCategoryFromMenu();
             break;
         case 7:
+            manager.removeOptionFromMenu();
+            break;
+        case 8:
             break;
         default:
             break;
         }
-    } while (managerSelection != 7);
+    } while (managerSelection != 8);
 }
 
 void adminMenu()
@@ -205,16 +209,17 @@ void adminMenu()
         cout << "3. Add combo" << endl;
         cout << "4. Add category to menu" << endl;
         cout << "5. Add option to category" << endl;
-        cout << "6. Remove option from menu" << endl;
-        cout << "7. Change role" << endl;
-        cout << "8. Exit" << endl;
+        cout << "6. Remove category from menu" << endl;
+        cout << "7. Remove option from menu" << endl;
+        cout << "8. Change role" << endl;
+        cout << "9. Exit" << endl;
 
         cout << "Choose operation: ";
         cin >> adminSelection;
 
-        while (adminSelection < 1 || adminSelection > 8)
+        while (adminSelection < 1 || adminSelection > 9)
         {
-            cout << "Please, write correct number (1-8): ";
+            cout << "Please, write correct number (1-9): ";
             cin >> adminSelection;
         }
 
@@ -236,17 +241,20 @@ void adminMenu()
             admin.addOptionToCategory();
             break;
         case 6:
-            admin.removeOptionFromMenu();
+            admin.removeCategoryFromMenu();
             break;
         case 7:
-            admin.changeRole();
+            admin.removeOptionFromMenu();
             break;
         case 8:
+            admin.changeRole();
+            break;
+        case 9:
             break;
         default:
             break;
         }
-    } while (adminSelection != 8);
+    } while (adminSelection != 9);
 }
 
 int main() {
