@@ -111,7 +111,7 @@ void Menu::displayOptions(int categoryId)
     }
 }
 
-void Menu::finishOrder(Order& order) const
+void Menu::finishOrder(Order order) const
 {
     cout << "Your order:\n";
     for (const auto& option : order.orderedOptions)
@@ -128,12 +128,12 @@ void Menu::finishOrder(Order& order) const
     cout << "Total: $" << order.totalCost << '\n';
 }
 
-double Menu::GetOrderTotalCost(Order& order) const
+double Menu::GetOrderTotalCost(Order order) const
 {
     return order.totalCost;
 }
 
-Order Menu::deleteOption(Order order)
+Order Menu::deleteOption(Order order) const
 {
     int deleteChoice;
     int optionNumber = 0;

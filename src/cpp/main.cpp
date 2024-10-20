@@ -15,9 +15,9 @@
 
 using namespace std;
 
-void discounts(function<void()> addDiscounts, function<void()> removeDiscounts)
+template<typename addDisc, typename removeDisc>
+void discounts(addDisc addDiscounts, removeDisc removeDiscounts)
 {
-    char continueChanging;
     int discountOperation;
 
     cout << "Types of operations" << endl;
@@ -40,6 +40,8 @@ void discounts(function<void()> addDiscounts, function<void()> removeDiscounts)
         break;
     case 2:
         removeDiscounts();
+        break;
+    default:
         break;
     }
 }
@@ -188,6 +190,8 @@ int main() {
                 break;
             case 7:
                 break;
+            default:
+                break;
             }
         } while (managerSelection != 7);
     }
@@ -241,6 +245,8 @@ int main() {
                 admin.changeRole();
                 break;
             case 8:
+                break;
+            default:
                 break;
             }
         } while (adminSelection != 8);

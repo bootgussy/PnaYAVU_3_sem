@@ -358,7 +358,7 @@ void Database::deleteOption(const std::string& name)
 	sqlite3_finalize(stmt);
 }
 
-void Database::addCombo(const std::string& comboName, const Order order, double totalCost)
+void Database::addCombo(const std::string& comboName, Order const& order, double totalCost)
 {
 	std::string category;
 	category = "Combo";	
