@@ -11,44 +11,60 @@ Menu::Menu()
 {
     Database::getInstance()->addCategory("Drinks");
     Database::getInstance()->addCategory("Desserts");
+    Database::getInstance()->addCategory("Combo");
 
-    Database::getInstance()->addOptionToCategory("Drinks", "Cappuccino", 5.5);
-    Database::getInstance()->addOptionToCategory("Drinks", "Latte", 6.0);
-    Database::getInstance()->addOptionToCategory("Desserts", "Cheesecake", 4.5);
-    Database::getInstance()->addOptionToCategory("Desserts", "Tiramisu", 5.0);
+    Database::getInstance()->addOptionToCategory("Drinks", "Cappuccino", 5.5, 0);
+    Database::getInstance()->addOptionToCategory("Drinks", "Latte", 6.0, 0);
+    Database::getInstance()->addOptionToCategory("Desserts", "Cheesecake", 4.5, 0);
+    Database::getInstance()->addOptionToCategory("Desserts", "Tiramisu", 5.0, 0);
 }
 
-void Menu::displayMenu() const
+std::vector<int> Menu::displayMenu() const
 {
-    int categoryId = 1;
+    int categoryNum = 1;
 
     cout << "Menu:\n";
-    while (Database::getInstance()->getCategory(categoryId) != "NULL")
+    for (int categoriesId : Database::getInstance()->getCategories())
     {
-        cout << categoryId << ". " << Database::getInstance()->getCategory(categoryId) << "\n";
-        categoryId++;
+        cout << categoryNum << ". " << Database::getInstance()->getCategory(categoriesId) << "\n";
+        categoryNum++;
     }
+    return Database::getInstance()->getCategories();
 }
 
-void Menu::selectOption()
+MenuOption Menu::selectOption()
 {
-    displayMenu();
-
     int categoryChoice;
+    int optionChoice;
+
+    vector<int> categories = displayMenu();
+
     cout << "Select category (enter number): ";
     cin >> categoryChoice;
 
-    if (categoryChoice > 0 && categoryChoice <= Database::getInstance()->categoriesSize())
+    while (categoryChoice < 1 || categoryChoice > Database::getInstance()->categoriesSize())
     {
-        displayOptions(categoryChoice);
-        int optionChoice;
+        cout << "Please write correct number (1-" << Database::getInstance()->categoriesSize() << "): ";
+        cin >> categoryChoice;
+    }
+    
+    if (Database::getInstance()->optionsInCategory(categories[categoryChoice - 1]) > 0)
+    {
+        displayOptions(categories[categoryChoice - 1]);
+
         cout << "Select option (enter number): ";
         cin >> optionChoice;
+
+        while (optionChoice < 1 || optionChoice > Database::getInstance()->optionsInCategory(categories[categoryChoice - 1]))
+        {
+            cout << "Please write correct number (1-" << Database::getInstance()->optionsInCategory(categories[categoryChoice - 1]) << "): ";
+            cin >> optionChoice;
+        }
 
         MenuOption selectedOption = Database::getInstance()->getOption(categoryChoice, numOptionInDB[optionChoice - 1]);
         if (selectedOption != MenuOption())
         {
-            order.addOption(selectedOption);
+            return selectedOption;
         }
         else
         {
@@ -57,42 +73,67 @@ void Menu::selectOption()
     }
     else
     {
-        cout << "Invalid category selection!\n";
+        cout << "No options in category" << endl;
     }
+
+    return MenuOption();
+}
+
+Order Menu::addToOrder(Order& order)
+{
+    if (MenuOption option = selectOption(); option != MenuOption())
+    {
+        order.addOption(option);
+    }
+    return order;
 }
 
 void Menu::displayOptions(int categoryId)
 {
+    MenuOption currentOption;
     numOptionInDB.clear();
     int numOptionInCategory = 1;
 
     cout << "Category: " << Database::getInstance()->getCategory(categoryId) << "\n";
-    for (int optionId = 1; optionId <= Database::getInstance()->optionsSize(); optionId++)
-        if (Database::getInstance()->isOptionInCategory(categoryId, optionId))
+    for (int optionID : Database::getInstance()->isOptionInCategory(categoryId))
+    {
+        currentOption = Database::getInstance()->getOption(categoryId, optionID);
+        if (currentOption.getDiscount() == 0)
         {
-            cout << numOptionInCategory << ". " << Database::getInstance()->getOption(categoryId, optionId).getName() << " - $" << Database::getInstance()->getOption(categoryId, optionId).getPrice() << '\n';
-            numOptionInDB.push_back(optionId);
-            numOptionInCategory++;
+            cout << numOptionInCategory << ". " << currentOption.getName() << " - $" << currentOption.getPrice() << '\n';
         }
-    
+        else
+        {
+            cout << numOptionInCategory << ". " << currentOption.getName() << " - $" << currentOption.getPrice() / 100.0 * (100 - currentOption.getDiscount()) << " (Discount: " << currentOption.getDiscount() << "%)" << std::endl;
+        }
+        numOptionInDB.push_back(optionID);
+        numOptionInCategory++;
+    }
 }
 
-void Menu::finishOrder() const
+void Menu::finishOrder(Order const& order) const
 {
     cout << "Your order:\n";
     for (const auto& option : order.orderedOptions)
     {
-        cout << "- " << option.getName() << " : $" << option.getPrice() << '\n';
+        if (option.getDiscount() == 0)
+        {
+            cout << "- " << option.getName() << " : $" << option.getPrice() << '\n';
+        }
+        else
+        {
+            cout << "- " << option.getName() << " : $" << option.getPrice() / 100.0 * (100 - option.getDiscount()) << " (Discount " << option.getDiscount() << "%)" << '\n';
+        }
     }
     cout << "Total: $" << order.totalCost << '\n';
 }
 
-double Menu::GetOrderTotalCost() const
+double Menu::GetOrderTotalCost(Order const& order) const
 {
     return order.totalCost;
 }
 
-void Menu::deleteOption()
+Order Menu::deleteOption(Order order) const
 {
     int deleteChoice;
     int optionNumber = 0;
@@ -101,10 +142,17 @@ void Menu::deleteOption()
     for (const auto& option : order.orderedOptions)
     {
         ++optionNumber;
-        cout << optionNumber << ". " << option.getName() << " : $" << option.getPrice() << '\n';
+        if (option.getDiscount() == 0)
+        {
+            cout << optionNumber << ". " << option.getName() << " : $" << option.getPrice() << '\n';
+        }
+        else
+        {
+            cout << optionNumber << ". " << option.getName() << " : $" << option.getPrice() / 100.0 * (100 - option.getDiscount()) << " (Discount " << option.getDiscount() << "%)" << '\n';
+        }
     }
 
-    cout << "Select the option to remove:\n";
+    cout << "Select the option to remove: ";
     cin >> deleteChoice;
 
     while (deleteChoice < 1 || deleteChoice > order.orderedOptions.size())
@@ -114,7 +162,7 @@ void Menu::deleteOption()
     }
 
     cout << endl;
-
-    order.totalCost -= order.orderedOptions[deleteChoice - 1].getPrice();
+    order.totalCost -= order.orderedOptions[deleteChoice - 1].getPrice() / 100.0 * (100 - order.orderedOptions[deleteChoice - 1].getDiscount());
     order.orderedOptions.erase(order.orderedOptions.begin() + deleteChoice - 1);
+    return order;
 }
