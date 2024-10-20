@@ -17,5 +17,5 @@ public:
 
 	std::string getRole() const override;
 
-	void changeRole();
+	void changeRole() const;
 };

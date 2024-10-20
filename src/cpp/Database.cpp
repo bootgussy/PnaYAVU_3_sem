@@ -247,10 +247,9 @@ std::string Database::getCategory(int categoryId)
 
 	sqlite3_bind_int(stmt, 1, categoryId);
 
-	if (sqlite3_step(stmt) == SQLITE_ROW)
-	{
-		return reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-	}
+	sqlite3_step(stmt);
+	
+	return reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
 }
 
 MenuOption Database::getOption(int categoryId, int optionId)
@@ -321,7 +320,7 @@ std::vector<int> Database::isOptionInCategory(int categoryId)
 	return optionsID;
 }
 
-void Database::setPrice(std::string& name, double newPrice)
+void Database::setPrice(const std::string& name, double newPrice)
 {
 	std::string searchOptionSQL = "UPDATE OPTIONS SET PRICE = ? WHERE NAME = ?;";
 	sqlite3_prepare_v2(DB, searchOptionSQL.c_str(), -1, &stmt, nullptr);
@@ -334,7 +333,7 @@ void Database::setPrice(std::string& name, double newPrice)
 	sqlite3_finalize(stmt);
 }
 
-void Database::setDiscount(std::string& name, int newDiscount)
+void Database::setDiscount(const std::string& name, int newDiscount)
 {
 	std::string searchOptionSQL = "UPDATE OPTIONS SET DISCOUNT = ? WHERE NAME = ?;";
 	sqlite3_prepare_v2(DB, searchOptionSQL.c_str(), -1, &stmt, nullptr);
@@ -347,7 +346,7 @@ void Database::setDiscount(std::string& name, int newDiscount)
 	sqlite3_finalize(stmt);
 }
 
-void Database::deleteOption(std::string& name)
+void Database::deleteOption(const std::string& name)
 {
 	std::string searchOptionSQL = "DELETE FROM OPTIONS WHERE NAME = ?;";
 	sqlite3_prepare_v2(DB, searchOptionSQL.c_str(), -1, &stmt, nullptr);
@@ -359,7 +358,7 @@ void Database::deleteOption(std::string& name)
 	sqlite3_finalize(stmt);
 }
 
-void Database::addCombo(std::string& comboName, Order order, double totalCost)
+void Database::addCombo(const std::string& comboName, const Order order, double totalCost)
 {
 	std::string category;
 	category = "Combo";	

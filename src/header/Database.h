@@ -39,10 +39,10 @@ public:
 	int optionsSize();
 	int optionsInCategory(int categoryId);
 	std::vector<int> isOptionInCategory(int categoryId);
-	void setPrice(std::string& name, double newPrice);
-	void setDiscount(std::string& name, int newDiscount);
-	void deleteOption(std::string& name);
-	void addCombo(std::string& comboName, Order order, double totalCost);
+	void setPrice(const std::string& name, double newPrice);
+	void setDiscount(const std::string& name, int newDiscount);
+	void deleteOption(const std::string& name);
+	void addCombo(const std::string& comboName, const Order order, double totalCost);
 
 private:
 	sqlite3* DB;
