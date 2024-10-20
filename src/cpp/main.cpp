@@ -91,7 +91,7 @@ void discounts(addDisc addDiscounts, removeDisc removeDiscounts)
     }
 }
 
-void buyerMenu(Order& order, Menu& menu, std::shared_ptr<Account>& currentAccount)
+void buyerMenu(Order& order, Menu& menu, std::shared_ptr<Account> currentAccount)
 {
     Buyer buyer;
 
