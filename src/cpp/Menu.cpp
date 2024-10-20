@@ -81,7 +81,8 @@ MenuOption Menu::selectOption()
 
 Order Menu::addToOrder(Order& order)
 {
-    if (MenuOption option = selectOption(); option != MenuOption())
+    MenuOption option = selectOption();
+    if (option != MenuOption())
     {
         order.addOption(option);
     }
@@ -111,7 +112,7 @@ void Menu::displayOptions(int categoryId)
     }
 }
 
-void Menu::finishOrder(Order order) const
+void Menu::finishOrder(Order const& order) const
 {
     cout << "Your order:\n";
     for (const auto& option : order.orderedOptions)
@@ -128,7 +129,7 @@ void Menu::finishOrder(Order order) const
     cout << "Total: $" << order.totalCost << '\n';
 }
 
-double Menu::GetOrderTotalCost(Order order) const
+double Menu::GetOrderTotalCost(Order const& order) const
 {
     return order.totalCost;
 }

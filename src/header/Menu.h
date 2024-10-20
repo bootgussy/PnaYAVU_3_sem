@@ -15,8 +15,8 @@ public:
     MenuOption selectOption();
     Order addToOrder(Order& order);
     void displayOptions(int id);
-    void finishOrder(Order order) const;
-    double GetOrderTotalCost(Order order) const;
+    void finishOrder(Order const& order) const;
+    double GetOrderTotalCost(Order const& order) const;
     Order deleteOption(Order order) const;
 
 private:

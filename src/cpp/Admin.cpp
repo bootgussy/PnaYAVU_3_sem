@@ -39,7 +39,7 @@ void Admin::changeRole() const
 
     std::cin >> accountRole;
 
-    while (accountRole < 1 && accountRole > 3)
+    while (accountRole < 1 || accountRole > 3)
     {
         std::cout << "Please, write correct number (1-3): ";
         std::cin >> accountRole;

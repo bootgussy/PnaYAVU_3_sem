@@ -33,7 +33,8 @@ std::shared_ptr<Account> Account::logIn()
     std::cout << "Enter password: ";
     std::cin >> password;
     
-    if (Account account = Database::getInstance()->getAccount(login, password); account.getLogin() == login)
+    Account account = Database::getInstance()->getAccount(login, password);
+    if (account.getLogin() == login)
     {
         return std::make_shared<Account>(account);
     }

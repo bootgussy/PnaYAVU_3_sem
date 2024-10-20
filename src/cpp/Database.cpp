@@ -1,5 +1,4 @@
 #include "../header/Database.h"
-#include "../header/LoyaltySystem.h"
 #include "../header/MenuOption.h"
 #include <sqlite3.h>
 

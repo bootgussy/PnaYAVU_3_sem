@@ -6,7 +6,6 @@
 #include "../header/Menu.h"
 #include "../header/Order.h"
 #include "../header/MenuOption.h"
-#include "../header/LoyaltySystem.h"
 #include "../header/Database.h"
 #include "../header/Person.h"
 #include "../header/Buyer.h"
