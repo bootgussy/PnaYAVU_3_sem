@@ -4,7 +4,7 @@
 #include "Database.h"
 #include "Person.h"
 
-class Manager : public Person
+class Manager : virtual public Person
 {
 private:
 	sqlite3* database = Database::getInstance()->getDatabase();
