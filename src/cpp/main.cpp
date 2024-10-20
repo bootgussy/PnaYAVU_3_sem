@@ -14,12 +14,7 @@
 
 using namespace std;
 
-Menu menu;
-Account account;
-Order order;
-std::shared_ptr<Account> currentAccount = nullptr;
-
-void logInOrSignIn()
+void logInOrSignIn(std::shared_ptr<Account>& currentAccount, Account& account)
 {
     char hasAccount;
     char needRepeatLogIn;
@@ -96,7 +91,7 @@ void discounts(addDisc addDiscounts, removeDisc removeDiscounts)
     }
 }
 
-void buyerMenu()
+void buyerMenu(Order& order, Menu& menu, std::shared_ptr<Account>& currentAccount)
 {
     Buyer buyer;
 
@@ -255,15 +250,20 @@ void adminMenu()
 }
 
 int main() {
+    Menu menu;
+    Account account;
+    Order order;
+    std::shared_ptr<Account> currentAccount = nullptr;
+
     std::string role;
 
-    logInOrSignIn();
+    logInOrSignIn(currentAccount, account);
 
     role = std::shared_ptr<Account>(currentAccount)->getRole();
 
     if (role == "Buyer")
     {
-        buyerMenu();
+        buyerMenu(order, menu, currentAccount);
     }
     else if (role == "Manager")
     {
