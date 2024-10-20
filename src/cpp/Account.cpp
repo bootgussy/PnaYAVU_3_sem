@@ -28,9 +28,6 @@ std::string Account::getRole() const
 
 std::shared_ptr<Account> Account::logIn()
 {
-    std::string login;
-    std::string password;
-
     std::cout << "Enter login: ";
     std::cin >> login;
     std::cout << "Enter password: ";
@@ -47,9 +44,7 @@ std::shared_ptr<Account> Account::logIn()
 
 std::shared_ptr<Account> Account::signIn()
 {
-    std::string login;
-    std::string password;
-    std::string role = "Admin";
+    role = "Admin";
     char needSignIn;
 
     std::cout << "Let's create an account!\nEnter login: ";

@@ -9,7 +9,7 @@ std::string Admin::getRole() const {
     return "Admin";
 }
 
-void Admin::changeRole()
+void Admin::changeRole() const
 {
     int id = 1;
     int numAccount;
@@ -55,6 +55,8 @@ void Admin::changeRole()
         break;
     case 3:
         Database::getInstance()->setRole(numAccount, "Admin");
+        break;
+    default:
         break;
     }
 
