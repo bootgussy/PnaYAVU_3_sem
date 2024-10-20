@@ -246,8 +246,6 @@ void Manager::removeCategoryFromMenu() const
 {
     Menu menu;
     std::vector<int> categories;
-    std::string optionName;
-    int optionPrice;
     char needRemoveCategory;
 
     categories = menu.displayMenu();
