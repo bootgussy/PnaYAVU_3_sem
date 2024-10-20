@@ -15,12 +15,12 @@ std::string Manager::getRole() const {
     return "Manager";
 }
 
-void Manager::changePrice()
+void Manager::changePrice() const
 {
     Menu menu;
     MenuOption currentOption;
-    double newPrice;
     std::string name;
+    double newPrice;
 
     currentOption = menu.selectOption();
     name = currentOption.getName();
@@ -42,12 +42,12 @@ void Manager::changePrice()
     }
 }
 
-void Manager::addDiscounts()
+void Manager::addDiscounts() const
 {
     Menu menu;
     MenuOption currentOption;
-    double newDiscount;
     std::string name;
+    double newDiscount;
 
     currentOption = menu.selectOption();
     name = currentOption.getName();
@@ -70,7 +70,7 @@ void Manager::addDiscounts()
     }
 }
 
-void Manager::removeDiscounts()
+void Manager::removeDiscounts() const
 {
     Menu menu;
     MenuOption currentOption;
@@ -86,7 +86,7 @@ void Manager::removeDiscounts()
     }
 }
 
-void Manager::addCombo()
+void Manager::addCombo() const
 {
     Menu menu;
     Order order;
@@ -155,7 +155,7 @@ void Manager::addCombo()
     Database::getInstance()->addCombo(comboName, order, round(totalCost));
 }
 
-void Manager::addCategoryToMenu()
+void Manager::addCategoryToMenu() const
 {
     std::string categoryName;
     char needAddCategory;
@@ -191,7 +191,7 @@ void Manager::addCategoryToMenu()
     
 }
 
-void Manager::addOptionToCategory()
+void Manager::addOptionToCategory() const
 {
     Menu menu;
     std::string optionName;
@@ -242,7 +242,7 @@ void Manager::addOptionToCategory()
     }
 }
 
-void Manager::removeOptionFromMenu()
+void Manager::removeOptionFromMenu() const
 {
     Menu menu;
     MenuOption currentOption;

@@ -20,7 +20,6 @@ public:
     Order deleteOption(Order order);
 
 private:
-    Order order;
     sqlite3* database = Database::getInstance()->getDatabase();
     sqlite3_stmt* stmt;
     std::vector<int> numOptionInDB;

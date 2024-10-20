@@ -9,7 +9,7 @@ std::string Admin::getRole() const {
     return "Admin";
 }
 
-void Admin::changeRole() const
+void Admin::changeRole()
 {
     int id = 1;
     int numAccount;
