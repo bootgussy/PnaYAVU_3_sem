@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/pics">
-        <file>pics/logo.png</file>
-        <file>pics/back_arrow.png</file>
-        <file>pics/cart_icon.png</file>
-        <file>pics/points_icon.png</file>
-    </qresource>
-</RCC>
