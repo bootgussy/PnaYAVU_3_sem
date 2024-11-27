@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QLabel>
-#include "MarqueeLabel.h"
+#include "marqueelabel.h"
 #include "MenuOption.h"
 
 class ItemLayout : public QVBoxLayout {

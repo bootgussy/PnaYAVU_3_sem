@@ -14,7 +14,7 @@ public:
     std::vector<int> displayMenu() const;
     MenuOption selectOption();
     Order addToOrder(Order& order);
-    std::vector<MenuOption> displayOptions(int categoryId);
+    std::vector<MenuOption> displayOptions(int categoryId) const;
     void finishOrder(Order const& order) const;
     double GetOrderTotalCost(Order const& order) const;
     Order deleteOption(Order order) const;

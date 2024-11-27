@@ -15,26 +15,26 @@
 CartWindow::CartWindow(QWidget *parent)
     : QWidget(parent) {
 
-    QHBoxLayout *headerLayout = new QHBoxLayout();
+    auto headerLayout = new QHBoxLayout();
 
-    QString cellStyle = "padding: 7px;";
+    auto cellStyle = "padding: 7px;";
 
-    QPushButton *backButton = new QPushButton(this);
+    auto backButton = new QPushButton(this);
     backButton->setIcon(QIcon(":/pics/pics/back_arrow.png"));
     backButton->setIconSize(QSize(24, 24));
     backButton->setFlat(true);
     headerLayout->addWidget(backButton, 1, Qt::AlignLeft);
 
-    QWidget *cartWidget = new QWidget(this);
-    QHBoxLayout *cartLayout = new QHBoxLayout(cartWidget);
-    AnimatedButton *cartLabel = new AnimatedButton("   Корзина   ", "white", "black", "color: black;", this);
+    auto cartWidget = new QWidget(this);
+    auto cartLayout = new QHBoxLayout(cartWidget);
+    auto cartLabel = new AnimatedButton("   Корзина   ", "white", "black", "color: black;", this);
     cartLabel->setIcon(QIcon(":/pics/pics/cart_icon.png"));
     cartLabel->setIconSize(QSize(24, 24));
     cartLayout->addWidget(cartLabel, 1, Qt::AlignCenter);
     cartWidget->setStyleSheet(cellStyle);
     headerLayout->addWidget(cartWidget, 1, Qt::AlignRight);
 
-    QWidget *headerWidget = new QWidget(this);
+    auto headerWidget = new QWidget(this);
     headerWidget->setLayout(headerLayout);
 
     orderScrollArea = new QScrollArea(this);
@@ -43,19 +43,19 @@ CartWindow::CartWindow(QWidget *parent)
 
     orderScrollArea->setWidget(orderWidget);
 
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    auto mainLayout = new QHBoxLayout(this);
     mainLayout->addWidget(orderScrollArea);
 
-    QWidget *mainWidget = new QWidget(this);
+    auto mainWidget = new QWidget(this);
     mainWidget->setLayout(mainLayout);
 
-    QWidget *totalCostWidget = new QWidget(this);
-    QHBoxLayout *totalCostLayout = new QHBoxLayout(totalCostWidget);
+    auto totalCostWidget = new QWidget(this);
+    auto totalCostLayout = new QHBoxLayout(totalCostWidget);
     totalCostLabel = new AnimatedButton("   К оплате: $" + QString::number(order.totalCost) + "   ", "white", "black", "color: black;", this);
     totalCostLayout->addWidget(totalCostLabel, 1, Qt::AlignCenter);
     totalCostWidget->setStyleSheet(cellStyle);
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout(this);
     layout->addWidget(headerWidget);
     layout->addWidget(mainWidget);
     layout->addWidget(totalCostWidget);
@@ -81,20 +81,21 @@ void CartWindow::populateOrderItems() {
         double price;
     };
 
-    int row = 0, col = 0;
+    int row = 0;
+    int col = 0;
     int index = 0;
 
     for (const MenuOption &item : order.orderedOptions) {
-        QLabel *imageLabel = new QLabel;
+        auto imageLabel = new QLabel;
 
-        QWidget *itemWidget = new QWidget(this);
+        auto itemWidget = new QWidget(this);
 
-        QVBoxLayout *itemLayout = new QVBoxLayout(itemWidget);
+        auto itemLayout = new QVBoxLayout(itemWidget);
 
-        ItemLayout *contentLayout = new ItemLayout(item, this);
+        auto contentLayout = new ItemLayout(item, this);
         itemLayout->addLayout(contentLayout);
 
-        AnimatedButton *deleteFromCartButton = new AnimatedButton("Удалить из заказа", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
+        auto deleteFromCartButton = new AnimatedButton("Удалить из заказа", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
         itemLayout->addWidget(deleteFromCartButton, 0, Qt::AlignCenter);
 
         itemWidget->setLayout(itemLayout);

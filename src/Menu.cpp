@@ -88,7 +88,7 @@ Order Menu::addToOrder(Order& order)
     return order;
 }
 
-vector<MenuOption> Menu::displayOptions(int categoryId)
+vector<MenuOption> Menu::displayOptions(int categoryId) const
 {
     vector<MenuOption> options;
     MenuOption currentOption;

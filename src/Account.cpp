@@ -1,29 +1,29 @@
 #include "Account.h"
 #include "Database.h"
 
-Account::Account(const std::string& accountLogin, const std::string& accountPassword, int accountPoints, const std::string& accountRole)
-    : login(accountLogin), password(accountPassword), points(accountPoints), role(accountRole) {}
+Account::Account(const std::string& login, const std::string& password, int points, const std::string& role)
+    : accountLogin(login), accountPassword(password), accountPoints(points), accountRole(role) {}
 
 Account::Account() = default;
 
 std::string Account::getLogin() const
 {
-    return login;
+    return accountLogin;
 }
 
 std::string Account::getPassword() const
 {
-    return password;
+    return accountPassword;
 }
 
 int Account::getPoints() const
 {
-    return points;
+    return accountPoints;
 }
 
 std::string Account::getRole() const
 {
-    return role;
+    return accountRole;
 }
 
 std::shared_ptr<Account> Account::signIn(std::string& login, std::string& password)
@@ -38,7 +38,7 @@ std::shared_ptr<Account> Account::signIn(std::string& login, std::string& passwo
 
 std::shared_ptr<Account> Account::logIn(std::string& login, std::string& password)
 {
-    role = "Buyer";
+    std::string role = "Buyer";
     if (Database::getInstance()->addAccount(login, password, 0, role) == true)
     {
         Account account = Database::getInstance()->getAccount(login, password);
@@ -51,11 +51,11 @@ std::shared_ptr<Account> Account::logIn(std::string& login, std::string& passwor
 }
 
 void operator+=(Account& account, int addedPoints) {
-    account.points += addedPoints;
+    account.accountPoints += addedPoints;
 }
 
 void operator-=(Account& account, int usedPoints) {
-    account.points -= usedPoints;
+    account.accountPoints -= usedPoints;
 }
 
 bool Account::operator!=(const Account& right) const {

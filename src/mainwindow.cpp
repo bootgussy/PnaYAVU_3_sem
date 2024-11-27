@@ -18,33 +18,33 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Логотип
-    QLabel *logoLabel = new QLabel(this);
+    auto logoLabel = new QLabel(this);
     logoLabel->setPixmap(QPixmap(":/pics/pics/logo.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     // Кнопки
-    AnimatedButton *signInButton = new AnimatedButton("Вход в аккаунт", "#C28D4B", "#C28D4B", "", this);
+    auto signInButton = new AnimatedButton("Вход в аккаунт", "#C28D4B", "#C28D4B", "", this);
     signInButton->setMinimumSize(150, 40);
 
-    AnimatedButton *logInButton = new AnimatedButton("Создать аккаунт", "#C28D4B", "#C28D4B", "background: white; color: #C28D4B", this);
+    auto logInButton = new AnimatedButton("Создать аккаунт", "#C28D4B", "#C28D4B", "background: white; color: #C28D4B", this);
     logInButton->setMinimumSize(150, 40);
 
     // Горизонтальный макет для кнопок
-    QHBoxLayout *buttonLayout = new QHBoxLayout;
+    auto buttonLayout = new QHBoxLayout;
     buttonLayout->addWidget(signInButton);
     buttonLayout->addWidget(logInButton);
     buttonLayout->setSpacing(20);
     buttonLayout->setAlignment(Qt::AlignCenter);
 
     // Основной вертикальный макет
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto mainLayout = new QVBoxLayout;
     mainLayout->addWidget(logoLabel, 0, Qt::AlignCenter);
     mainLayout->addLayout(buttonLayout);
 
-    QWidget *mainWidget = new QWidget(this);
+    auto mainWidget = new QWidget(this);
     mainWidget->setLayout(mainLayout);
 
-    signInWidget = new SignInWindow();
-    logInWidget = new LogInWindow();
+    signInWidget = new SignInWindow(this);
+    logInWidget = new LogInWindow(this);
 
     // Добавляем виджеты в QStackedWidget
     stackedWidget->addWidget(mainWidget);

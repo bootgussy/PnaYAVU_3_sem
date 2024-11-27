@@ -1,5 +1,0 @@
-D:/QT/CoffeeHouseSoftware/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/CMakeFiles/CoffeeHouseSoftware.dir
-D:/QT/CoffeeHouseSoftware/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
-D:/QT/CoffeeHouseSoftware/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
-D:/QT/CoffeeHouseSoftware/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/CMakeFiles/CoffeeHouseSoftware_autogen_timestamp_deps.dir
-D:/QT/CoffeeHouseSoftware/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/CMakeFiles/CoffeeHouseSoftware_autogen.dir

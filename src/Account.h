@@ -7,13 +7,13 @@
 class Account
 {
 private:
-    std::string login;
-    std::string password;
-    int points;
-    std::string role;
+    std::string accountLogin;
+    std::string accountPassword;
+    int accountPoints;
+    std::string accountRole;
 
 public:
-    Account(const std::string& accountLogin, const std::string& accountPassword, int accountPoints = 0, const std::string& accountRole = "");
+    Account(const std::string& login, const std::string& password, int points = 0, const std::string& role = "");
     Account();
 
     std::string getLogin() const;

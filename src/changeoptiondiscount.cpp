@@ -4,14 +4,14 @@
 ChangeOptionDiscount::ChangeOptionDiscount(QWidget *parent)
     : ChooseOptionWidget(parent)
 {
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    auto mainLayout = new QVBoxLayout(this);
     operationLabelButton = new AnimatedButton("     Изменить скидку     ", "white", "black", "color: black; padding: 12px;", this);
 
     stackedWidget = new QStackedWidget(this);
 
     stackedWidget->addWidget(categoriesWidget());
     stackedWidget->addWidget(optionSelection());
-    stackedWidget->addWidget(editWidget());
+    stackedWidget->addWidget(this->editWidget());
 
     stackedWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
@@ -19,7 +19,7 @@ ChangeOptionDiscount::ChangeOptionDiscount(QWidget *parent)
 }
 
 QWidget *ChangeOptionDiscount::editWidget() {
-    QWidget* mainWidget = new QWidget(this);
+    auto mainWidget = new QWidget(this);
 
     changeLayout = new QHBoxLayout(mainWidget);
 
@@ -27,19 +27,19 @@ QWidget *ChangeOptionDiscount::editWidget() {
     currentItemLayout = new QVBoxLayout(currentItemWidget);
     currentItemLayout->setContentsMargins(0, 0, 0, 0);
 
-    QWidget *changingDiscountWidget = new QWidget(this);
-    QVBoxLayout *changingDiscountLayout = new QVBoxLayout(changingDiscountWidget);
+    auto changingDiscountWidget = new QWidget(this);
+    auto changingDiscountLayout = new QVBoxLayout(changingDiscountWidget);
 
     categoryLabelButton = new AnimatedButton("Категория: ", "white", "black", "color: black; padding: 12px;", this);
     categoryLabelButton->setEnabled(false);
 
-    QLineEdit *discountInput = new QLineEdit(this);
+    auto discountInput = new QLineEdit(this);
     discountInput->setPlaceholderText("Новая скидка");
 
     discountInput->setMinimumHeight(25);
     discountInput->setMinimumWidth(200);
 
-    AnimatedButton *confirmButton = new AnimatedButton("Подтвердить иземенение", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
+    auto confirmButton = new AnimatedButton("Подтвердить иземенение", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
 
     changingDiscountLayout->addWidget(categoryLabelButton, 0, Qt::AlignHCenter);
     changingDiscountLayout->addWidget(discountInput, 0, Qt::AlignHCenter);

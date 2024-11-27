@@ -12,7 +12,7 @@
 #include <QMessageBox>
 #include <QScrollArea>
 #include "MenuOption.h"
-#include "ItemLayout.h"
+#include "itemlayout.h"
 #include "categorieslist.h"
 #include "AnimatedButton.h"
 #include "Menu.h"
@@ -49,7 +49,7 @@ protected:
 
     template <typename T>
     bool processInputAndConfirm(QWidget *parent, const QString &attributeNameClarify,  const QString &attributeNameSucessfull, T value,
-                                                 const std::function<void(T)> &updateCallback) {
+                                                 const std::function<void(T)> &updateCallback) const {
         CustomMessageBox confirmDialog;
         confirmDialog.setWindowTitle("Подтверждение");
         confirmDialog.setText("Вы уверены, что хотите изменить " + attributeNameClarify + "?");

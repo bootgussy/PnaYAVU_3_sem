@@ -16,13 +16,14 @@ void ChooseOptionWidget::populateMenuItems(int categoryId) {
         double price;
     };
 
-    int row = 0, col = 0;
+    int row = 0;
+    int col = 0;
     for (const MenuOption &item : menu.displayOptions(categoryId)) {
-        QWidget *itemWidget = new QWidget(this);
+        auto itemWidget = new QWidget(this);
 
-        QVBoxLayout *itemLayout = new QVBoxLayout(itemWidget);
+        auto itemLayout = new QVBoxLayout(itemWidget);
 
-        ItemLayout *contentLayout = new ItemLayout(item, this);
+        auto contentLayout = new ItemLayout(item);
         itemLayout->addLayout(contentLayout);
         changeButton = new AnimatedButton("Изменить", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
         itemLayout->addWidget(changeButton, 0, Qt::AlignCenter);
@@ -55,7 +56,7 @@ void ChooseOptionWidget::populateMenuItems(int categoryId) {
             }
 
             currentItemWidget = new QWidget(this);
-            QVBoxLayout *itemLayout = new QVBoxLayout(currentItemWidget);
+            auto itemLayout = new QVBoxLayout(currentItemWidget);
 
             contentLayout = new ItemLayout(item, this);
             currentOption = item;
@@ -85,19 +86,19 @@ void ChooseOptionWidget::populateMenuItems(int categoryId) {
 }
 
 QWidget *ChooseOptionWidget::categoriesWidget() {
-    QWidget *categoriesLabelWidget = new QWidget(this);
-    QVBoxLayout *categoriesLabelLayout = new QVBoxLayout(categoriesLabelWidget);
-    AnimatedButton *categoriesLabelButton = new AnimatedButton("     Категории     ", "white", "black", "color: black; padding: 12px;", this);
+    auto categoriesLabelWidget = new QWidget(this);
+    auto categoriesLabelLayout = new QVBoxLayout(categoriesLabelWidget);
+    auto categoriesLabelButton = new AnimatedButton("     Категории     ", "white", "black", "color: black; padding: 12px;", this);
     categoriesLabelButton->setEnabled(false);
     categoriesLabelLayout->addWidget(operationLabelButton, 1, Qt::AlignCenter);
     categoriesLabelLayout->addWidget(categoriesLabelButton, 1, Qt::AlignCenter);
     categoriesLabelLayout->setSpacing(5);
 
-    categoryList = new CategoriesList(this);
+    categoryList = new CategoriesList();
     categoryList->setFocusPolicy(Qt::NoFocus);
 
-    QWidget* mainWidget = new QWidget(this);
-    QVBoxLayout *categoryLayout = new QVBoxLayout(mainWidget);
+    auto mainWidget = new QWidget(this);
+    auto categoryLayout = new QVBoxLayout(mainWidget);
     categoryLayout->addWidget(categoriesLabelWidget);
     categoryLayout->addWidget(categoryList);
 
@@ -117,13 +118,13 @@ QWidget *ChooseOptionWidget::categoriesWidget() {
 }
 
 QWidget* ChooseOptionWidget::optionSelection() {
-    QWidget* mainWidget = new QWidget(this);
+    auto mainWidget = new QWidget(this);
 
-    QVBoxLayout *optionLayout = new QVBoxLayout(mainWidget);
+    auto optionLayout = new QVBoxLayout(mainWidget);
 
-    QHBoxLayout *headerLayout = new QHBoxLayout();
+    auto headerLayout = new QHBoxLayout();
 
-    QPushButton *toCategoriesBackButton = new QPushButton(this);
+    auto toCategoriesBackButton = new QPushButton(this);
     toCategoriesBackButton->setIcon(QIcon(":/pics/pics/back_arrow.png"));
     toCategoriesBackButton->setIconSize(QSize(24, 24));
     toCategoriesBackButton->setFlat(true);

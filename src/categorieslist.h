@@ -4,14 +4,14 @@
 #include <QWidget>
 #include <QListWidget>
 #include <QLabel>
-#include "MarqueeLabel.h"
+#include "marqueelabel.h"
 #include "MenuOption.h"
 
 class CategoriesList : public QListWidget {
     Q_OBJECT
 
 public:
-    explicit CategoriesList(QWidget *parent = nullptr);
+    explicit CategoriesList();
 
 private:
     QListWidget *categoryList;

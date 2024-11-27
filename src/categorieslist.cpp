@@ -2,8 +2,7 @@
 #include "Database.h"
 #include <QVBoxLayout>
 
-CategoriesList::CategoriesList(QWidget *parent)
-: QListWidget()
+CategoriesList::CategoriesList()
 {
     populateCategories();
 
@@ -33,7 +32,7 @@ void CategoriesList::populateCategories() {
     for (int categoryId : Database::getInstance()->getCategories()) {
         QString categoryName = QString::fromStdString(Database::getInstance()->getCategory(categoryId));
 
-        QListWidgetItem *item = new QListWidgetItem(categoryName, this);
+        auto item = new QListWidgetItem(categoryName, this);
 
         item->setData(Qt::UserRole, categoryId);
 

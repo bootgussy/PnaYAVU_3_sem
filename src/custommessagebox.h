@@ -5,7 +5,7 @@
 
 class CustomMessageBox : public QMessageBox {
 public:
-    CustomMessageBox(QWidget *parent = nullptr) : QMessageBox(parent) {
+    explicit CustomMessageBox(QWidget *parent = nullptr) : QMessageBox(parent) {
         // Устанавливаем стиль для всех окон
         setStyleSheet(
             "QMessageBox { "

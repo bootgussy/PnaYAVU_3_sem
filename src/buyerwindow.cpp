@@ -16,13 +16,13 @@ BuyerWindow::BuyerWindow(std::shared_ptr<Account> currentAccount, QWidget *paren
     : QWidget(parent), account(currentAccount) {
 
    // Создаём горизонтальный макет для шапки
-    QHBoxLayout *headerLayout = new QHBoxLayout();
+    auto headerLayout = new QHBoxLayout();
 
     QString cellStyle = "padding: 7px;";
 
-    QWidget *pointsWidget = new QWidget(this);
-    QHBoxLayout *pointsLayout = new QHBoxLayout(pointsWidget);
-    AnimatedButton *pointsButton = new AnimatedButton("   Баллы:  " + QString::number(account->getPoints()) + " ", "white", "black", "color: black;", this);
+    auto pointsWidget = new QWidget(this);
+    auto pointsLayout = new QHBoxLayout(pointsWidget);
+    auto pointsButton = new AnimatedButton("   Баллы:  " + QString::number(account->getPoints()) + " ", "white", "black", "color: black;", this);
     pointsButton->setIcon(QIcon(":/pics/pics/points_icon.png"));
     pointsButton->setIconSize(QSize(24, 24));
     pointsButton->setEnabled(false);
@@ -30,46 +30,46 @@ BuyerWindow::BuyerWindow(std::shared_ptr<Account> currentAccount, QWidget *paren
     pointsWidget->setStyleSheet(cellStyle);
     headerLayout->addWidget(pointsWidget, 1, Qt::AlignLeft);
 
-    QHBoxLayout *buttonsLayout = new QHBoxLayout();
+    auto buttonsLayout = new QHBoxLayout();
 
-    QWidget *cartWidget = new QWidget(this);
-    QHBoxLayout *cartLayout = new QHBoxLayout(cartWidget);
-    AnimatedButton *cartButton = new AnimatedButton("   Корзина", "#C28D4B", "#C28D4B", "color: white;", this);
+    auto cartWidget = new QWidget(this);
+    auto cartLayout = new QHBoxLayout(cartWidget);
+    auto cartButton = new AnimatedButton("   Корзина", "#C28D4B", "#C28D4B", "color: white;", this);
     cartButton->setIcon(QIcon(":/pics/pics/cart_icon.png"));
     cartButton->setIconSize(QSize(24, 24));
     cartLayout->addWidget(cartButton, 1, Qt::AlignCenter);
     cartWidget->setStyleSheet(cellStyle);
     buttonsLayout->addWidget(cartWidget, 1, Qt::AlignCenter);
 
-    QFrame *verticalLine = new QFrame(this);
+    auto verticalLine = new QFrame(this);
     verticalLine->setFrameShape(QFrame::VLine);
     verticalLine->setFrameShadow(QFrame::Sunken);
     buttonsLayout->addWidget(verticalLine);
 
-    QWidget *logoutWidget = new QWidget(this);
-    QHBoxLayout *logoutLayout = new QHBoxLayout(logoutWidget);
-    AnimatedButton *logoutButton = new AnimatedButton("Выход", "#EDC676", "#EDC676", "padding: 12px;", this);
+    auto logoutWidget = new QWidget(this);
+    auto logoutLayout = new QHBoxLayout(logoutWidget);
+    auto logoutButton = new AnimatedButton("Выход", "#EDC676", "#EDC676", "padding: 12px;", this);
     logoutLayout->addWidget(logoutButton, 1, Qt::AlignCenter);
     buttonsLayout->addWidget(logoutWidget, 1, Qt::AlignRight);
 
     headerLayout->addLayout(buttonsLayout);
 
-    QWidget *headerWidget = new QWidget(this);
+    auto headerWidget = new QWidget(this);
     headerWidget->setLayout(headerLayout);
 
-    QWidget *categoriesWidget = new QWidget(this);
+    auto categoriesWidget = new QWidget();
 
-    QWidget *categoriesLabelWidget = new QWidget(this);
-    QHBoxLayout *categoriesLabelLayout = new QHBoxLayout(categoriesLabelWidget);
-    AnimatedButton *categoriesLabelButton = new AnimatedButton("     Категории     ", "white", "black", "color: black;", this);
+    auto categoriesLabelWidget = new QWidget(this);
+    auto categoriesLabelLayout = new QHBoxLayout(categoriesLabelWidget);
+    auto categoriesLabelButton = new AnimatedButton("     Категории     ", "white", "black", "color: black;", this);
     categoriesLabelButton->setEnabled(false);
     categoriesLabelLayout->addWidget(categoriesLabelButton, 1, Qt::AlignCenter);
     categoriesLabelWidget->setStyleSheet(cellStyle);
 
-    categoryList = new CategoriesList(this);
+    categoryList = new CategoriesList();
     categoryList->setFocusPolicy(Qt::NoFocus);
 
-    QVBoxLayout *categoryLayout = new QVBoxLayout(this);
+    auto categoryLayout = new QVBoxLayout(this);
     categoryLayout->addWidget(categoriesLabelWidget);
     categoryLayout->addWidget(categoryList);
 
@@ -92,14 +92,14 @@ BuyerWindow::BuyerWindow(std::shared_ptr<Account> currentAccount, QWidget *paren
 
     menuScrollArea->setWidget(menuWidget);
 
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    auto mainLayout = new QHBoxLayout(this);
     mainLayout->addWidget(categoriesWidget);
     mainLayout->addWidget(menuScrollArea);
 
-    QWidget *mainWidget = new QWidget(this);
+    auto mainWidget = new QWidget(this);
     mainWidget->setLayout(mainLayout);
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout(this);
     layout->addWidget(headerWidget);
     layout->addWidget(mainWidget);
 
@@ -130,18 +130,17 @@ void BuyerWindow::populateMenuItems(int categoryId) {
         double price;
     };
 
-    int row = 0, col = 0;
+    int row = 0;
+    int col = 0;
     for (const MenuOption &item : menu.displayOptions(categoryId)) {
-        QLabel *imageLabel = new QLabel;
+        auto itemWidget = new QWidget(this);
 
-        QWidget *itemWidget = new QWidget(this);
+        auto itemLayout = new QVBoxLayout(itemWidget);
 
-        QVBoxLayout *itemLayout = new QVBoxLayout(itemWidget);
-
-        ItemLayout *contentLayout = new ItemLayout(item, this);
+        auto contentLayout = new ItemLayout(item, this);
         itemLayout->addLayout(contentLayout);
 
-        AnimatedButton *addToCartButton = new AnimatedButton("Добавить в заказ", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
+        auto addToCartButton = new AnimatedButton("Добавить в заказ", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
         itemLayout->addWidget(addToCartButton, 0, Qt::AlignCenter);
 
         itemWidget->setLayout(itemLayout);

@@ -1,12 +1,13 @@
 #include "itemlayout.h"
 
 ItemLayout::ItemLayout(const MenuOption &item, QWidget *parent)
-: QVBoxLayout(), menuItem(item) {
-    QLabel *imageLabel = new QLabel;
+    : QVBoxLayout(), menuItem(item)
+{
+    auto imageLabel = new QLabel;
     imageLabel->setPixmap(QPixmap(":/pics/pics/logo.png").scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     imageLabel->setStyleSheet("border: 0px;");
 
-    MarqueeLabel *nameLabel = new MarqueeLabel;
+    auto nameLabel = new MarqueeLabel;
     nameLabel->setText(QString::fromStdString(item.getName()));
     nameLabel->setMaximumHeight(30);
     nameLabel->setMaximumWidth(100);
@@ -26,10 +27,10 @@ ItemLayout::ItemLayout(const MenuOption &item, QWidget *parent)
     }
     priceLabel->setStyleSheet("border: 0px;");
 
-    QVBoxLayout *inscriptionsLayout = new QVBoxLayout;
+    auto inscriptionsLayout = new QVBoxLayout;
     inscriptionsLayout->addWidget(nameLabel, 0, Qt::AlignCenter);
 
-    QHBoxLayout *discountAndPriceLayout = new QHBoxLayout;
+    auto discountAndPriceLayout = new QHBoxLayout;
     discountAndPriceLayout->addWidget(discountLabel, 0, Qt::AlignLeft);
     discountAndPriceLayout->addWidget(newPriceLabel, 0, Qt::AlignRight);
     discountAndPriceLayout->addWidget(priceLabel, 0, Qt::AlignRight);

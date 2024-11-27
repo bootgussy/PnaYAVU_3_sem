@@ -9,56 +9,56 @@
 LogInWindow::LogInWindow(QWidget *parent)
     : QWidget(parent)
 {
-    QPushButton *backButton = new QPushButton(this);
+    auto backButton = new QPushButton(this);
     backButton->setIcon(QIcon(":/pics/pics/back_arrow.png"));
     backButton->setIconSize(QSize(24, 24));
     backButton->setFlat(true);
 
-    QLabel *logoLabel = new QLabel(this);
+    auto logoLabel = new QLabel(this);
     logoLabel->setPixmap(QPixmap(":/pics/pics/logo.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     logoLabel->setAlignment(Qt::AlignCenter);
 
-    QLineEdit *loginEdit = new QLineEdit(this);
+    auto loginEdit = new QLineEdit(this);
     loginEdit->setPlaceholderText("Логин");
     loginEdit->setMinimumHeight(25);
     loginEdit->setMinimumWidth(150);
     loginEdit->setMaximumWidth(300);
 
-    QLineEdit *passwordEdit = new QLineEdit(this);
+    auto passwordEdit = new QLineEdit(this);
     passwordEdit->setPlaceholderText("Пароль");
     passwordEdit->setMinimumHeight(25);
     passwordEdit->setMinimumWidth(150);
     passwordEdit->setMaximumWidth(300);
 
-    QLineEdit *passwordCheckEdit = new QLineEdit(this);
+    auto passwordCheckEdit = new QLineEdit(this);
     passwordCheckEdit->setPlaceholderText("Повторный пароль");
     passwordCheckEdit->setMinimumHeight(25);
     passwordCheckEdit->setMinimumWidth(150);
     passwordCheckEdit->setMaximumWidth(300);
 
-    QVBoxLayout *editLayout = new QVBoxLayout;
+    auto editLayout = new QVBoxLayout;
     editLayout->addWidget(loginEdit);
     editLayout->addWidget(passwordEdit);
     editLayout->addWidget(passwordCheckEdit);
     editLayout->setSpacing(10);
     editLayout->setAlignment(Qt::AlignCenter);
 
-    QPushButton *logInButton = new AnimatedButton("Создать аккаунт", "#C28D4B", "#C28D4B", "", this);
+    auto logInButton = new AnimatedButton("Создать аккаунт", "#C28D4B", "#C28D4B", "", this);
     logInButton->setFixedHeight(40);
     logInButton->setMinimumWidth(150);
     logInButton->setMaximumWidth(300);
 
-    QLabel *errorLabel = new QLabel(this);
+    auto errorLabel = new QLabel(this);
     errorLabel->setText("Пароль не совпадает");
     errorLabel->setStyleSheet("QLabel { color : white; }");
     errorLabel->setAlignment(Qt::AlignCenter);
 
-    QVBoxLayout *buttonAndErrorLayout = new QVBoxLayout;
+    auto buttonAndErrorLayout = new QVBoxLayout;
     buttonAndErrorLayout->addWidget(logInButton, 0, Qt::AlignCenter);
     buttonAndErrorLayout->addWidget(errorLabel);
     buttonAndErrorLayout->setSpacing(10);
 
-    QVBoxLayout *layout = new QVBoxLayout;
+    auto layout = new QVBoxLayout;
     layout->addWidget(backButton, 0, Qt::AlignLeft);
     layout->addWidget(logoLabel, 0, Qt::AlignCenter);
     layout->addLayout(editLayout);

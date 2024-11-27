@@ -14,15 +14,15 @@ AdminWindow::AdminWindow(QWidget *parent)
 {
     QString cellStyle = "padding: 12px;";
 
-    QHBoxLayout *headerLayout = new QHBoxLayout();
+    auto headerLayout = new QHBoxLayout();
 
-    QWidget *adminStatusWidget = new QWidget(this);
+    auto adminStatusWidget = new QWidget(this);
     QHBoxLayout *adminStatusLayout = new QHBoxLayout(adminStatusWidget);
     adminStatusLabel = new AnimatedButton("Статус:  Администратор", "white", "black", "color: black;", this);
     adminStatusLayout->addWidget(adminStatusLabel, 1, Qt::AlignLeft);
     adminStatusWidget->setStyleSheet(cellStyle);
 
-    QWidget *logOutWidget = new QWidget(this);
+    auto logOutWidget = new QWidget(this);
     QHBoxLayout *logOutLayout = new QHBoxLayout(logOutWidget);
     AnimatedButton *logOutButton = new AnimatedButton("Выход", "#EDC676", "#EDC676", "padding: 12px;", this);
     logOutLayout->addWidget(logOutButton, 1, Qt::AlignCenter);
@@ -30,16 +30,16 @@ AdminWindow::AdminWindow(QWidget *parent)
     headerLayout->addWidget(adminStatusWidget, 0, Qt::AlignLeft);
     headerLayout->addWidget(logOutWidget, 0, Qt::AlignRight);
 
-    QWidget *headerWidget = new QWidget(this);
+    auto headerWidget = new QWidget(this);
     headerWidget->setLayout(headerLayout);
 
     QFrame *horizontalLine = new QFrame(this);
     horizontalLine->setFrameShape(QFrame::HLine);
     horizontalLine->setFrameShadow(QFrame::Sunken);
 
-    QWidget *operationsWidget = new QWidget(this);
+    auto operationsWidget = new QWidget(this);
 
-    QWidget *operationsLabelWidget = new QWidget(this);
+    auto operationsLabelWidget = new QWidget(this);
     QHBoxLayout *operationsLabelLayout = new QHBoxLayout(operationsLabelWidget);
     AnimatedButton *operationsLabelButton = new AnimatedButton("Операции", "white", "black", "color: black;", this);
     operationsLabelButton->setEnabled(false);
@@ -56,7 +56,7 @@ AdminWindow::AdminWindow(QWidget *parent)
     addItemToList("Редактировать опции", 5);
     addItemToList("Изменить статус аккаунта", 6);
 
-    QVBoxLayout *operationsLayout = new QVBoxLayout(this);
+    auto operationsLayout = new QVBoxLayout(this);
     operationsLayout->addWidget(operationsLabelWidget);
     operationsLayout->addWidget(operationsList);
 
@@ -106,11 +106,11 @@ AdminWindow::AdminWindow(QWidget *parent)
                                 }
                                 )");
 
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    auto mainLayout = new QHBoxLayout(this);
     mainLayout->addWidget(operationsWidget);
     mainLayout->addWidget(operationWidget);
 
-    QWidget *mainWidget = new QWidget(this);
+    auto mainWidget = new QWidget(this);
     mainWidget->setLayout(mainLayout);
 
     QVBoxLayout *layout = new QVBoxLayout;
@@ -142,16 +142,12 @@ AdminWindow::AdminWindow(QWidget *parent)
             currentOperationWidget = new ChangeOptionDiscount(this);
             break;
         case 3:
-            //operationScrollArea->setWidget();
             break;
         case 4:
-            //operationScrollArea->setWidget();
             break;
         case 5:
-            //operationScrollArea->setWidget();
             break;
         default:
-            //operationScrollArea->setWidget();
             break;
         }
 
@@ -165,7 +161,7 @@ AdminWindow::AdminWindow(QWidget *parent)
 }
 
 void AdminWindow::addItemToList(QString itemName, int itemIndex) {
-    QListWidgetItem *item = new QListWidgetItem(itemName, operationsList);
+    auto item = new QListWidgetItem(itemName, operationsList);
 
     item->setData(Qt::UserRole, itemIndex);
 

@@ -14,34 +14,34 @@ ManagerWindow::ManagerWindow(QWidget *parent)
 {
     QString cellStyle = "padding: 12px;";
 
-    QHBoxLayout *headerLayout = new QHBoxLayout();
+    auto headerLayout = new QHBoxLayout();
 
-    QWidget *managerStatusWidget = new QWidget(this);
-    QHBoxLayout *managerStatusLayout = new QHBoxLayout(managerStatusWidget);
+    auto managerStatusWidget = new QWidget(this);
+    auto managerStatusLayout = new QHBoxLayout(managerStatusWidget);
     managerStatusLabel = new AnimatedButton("Статус:  Менеджер", "white", "black", "color: black;", this);
     managerStatusLayout->addWidget(managerStatusLabel, 1, Qt::AlignLeft);
     managerStatusWidget->setStyleSheet(cellStyle);
 
-    QWidget *logOutWidget = new QWidget(this);
-    QHBoxLayout *logOutLayout = new QHBoxLayout(logOutWidget);
-    AnimatedButton *logOutButton = new AnimatedButton("Выход", "#EDC676", "#EDC676", "padding: 12px;", this);
+    auto logOutWidget = new QWidget(this);
+    auto logOutLayout = new QHBoxLayout(logOutWidget);
+    auto logOutButton = new AnimatedButton("Выход", "#EDC676", "#EDC676", "padding: 12px;", this);
     logOutLayout->addWidget(logOutButton, 1, Qt::AlignCenter);
 
     headerLayout->addWidget(managerStatusWidget, 0, Qt::AlignLeft);
     headerLayout->addWidget(logOutWidget, 0, Qt::AlignRight);
 
-    QFrame *horizontalLine = new QFrame(this);
+    auto horizontalLine = new QFrame(this);
     horizontalLine->setFrameShape(QFrame::HLine);
     horizontalLine->setFrameShadow(QFrame::Sunken);
 
-    QWidget *headerWidget = new QWidget(this);
+    auto headerWidget = new QWidget(this);
     headerWidget->setLayout(headerLayout);
 
-    QWidget *operationsWidget = new QWidget(this);
+    auto operationsWidget = new QWidget(this);
 
-    QWidget *operationsLabelWidget = new QWidget(this);
-    QHBoxLayout *operationsLabelLayout = new QHBoxLayout(operationsLabelWidget);
-    AnimatedButton *operationsLabelButton = new AnimatedButton("Операции", "white", "black", "color: black;", this);
+    auto operationsLabelWidget = new QWidget(this);
+    auto operationsLabelLayout = new QHBoxLayout(operationsLabelWidget);
+    auto operationsLabelButton = new AnimatedButton("Операции", "white", "black", "color: black;", this);
     operationsLabelButton->setEnabled(false);
     operationsLabelLayout->addWidget(operationsLabelButton, 1, Qt::AlignCenter);
     operationsLabelWidget->setStyleSheet(cellStyle);
@@ -55,7 +55,7 @@ ManagerWindow::ManagerWindow(QWidget *parent)
     addItemToList("Редактировать категории", 4);
     addItemToList("Редактировать опции", 5);
 
-    QVBoxLayout *operationsLayout = new QVBoxLayout(this);
+    auto operationsLayout = new QVBoxLayout(this);
     operationsLayout->addWidget(operationsLabelWidget);
     operationsLayout->addWidget(operationsList);
 
@@ -105,14 +105,14 @@ ManagerWindow::ManagerWindow(QWidget *parent)
                                 }
                                 )");
 
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    auto mainLayout = new QHBoxLayout(this);
     mainLayout->addWidget(operationsWidget);
     mainLayout->addWidget(operationWidget);
 
-    QWidget *mainWidget = new QWidget(this);
+    auto mainWidget = new QWidget(this);
     mainWidget->setLayout(mainLayout);
 
-    QVBoxLayout *layout = new QVBoxLayout;
+    auto layout = new QVBoxLayout;
     layout->addWidget(headerWidget, 0, Qt::AlignTop);
     layout->addWidget(horizontalLine);
     layout->addWidget(mainWidget);
@@ -139,16 +139,12 @@ ManagerWindow::ManagerWindow(QWidget *parent)
             currentOperationWidget = new ChangeOptionDiscount(this);
             break;
         case 3:
-            //operationScrollArea->setWidget();
             break;
         case 4:
-            //operationScrollArea->setWidget();
             break;
         case 5:
-            //operationScrollArea->setWidget();
             break;
         default:
-            //operationScrollArea->setWidget();
             break;
         }
 
@@ -162,7 +158,7 @@ ManagerWindow::ManagerWindow(QWidget *parent)
 }
 
 void ManagerWindow::addItemToList(QString itemName, int itemIndex) {
-    QListWidgetItem *item = new QListWidgetItem(itemName, operationsList);
+    auto item = new QListWidgetItem(itemName, operationsList);
 
     item->setData(Qt::UserRole, itemIndex);
 
