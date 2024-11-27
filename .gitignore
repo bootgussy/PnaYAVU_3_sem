@@ -37,5 +37,6 @@
 *.vcxproj.filters
 *.vcxproj.user
 *.cd
+*.ui
 x64/Release/
-
+Build
