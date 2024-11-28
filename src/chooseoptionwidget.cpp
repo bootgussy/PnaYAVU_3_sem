@@ -87,10 +87,10 @@ void ChooseOptionWidget::populateMenuItems(int categoryId) {
 
 QWidget *ChooseOptionWidget::categoriesWidget() {
     auto categoriesLabelWidget = new QWidget(this);
-    auto categoriesLabelLayout = new QVBoxLayout(categoriesLabelWidget);
+    auto categoriesLabelLayout = new QHBoxLayout(categoriesLabelWidget);
+
     auto categoriesLabelButton = new AnimatedButton("     Категории     ", "white", "black", "color: black; padding: 12px;", this);
     categoriesLabelButton->setEnabled(false);
-    categoriesLabelLayout->addWidget(operationLabelButton, 1, Qt::AlignCenter);
     categoriesLabelLayout->addWidget(categoriesLabelButton, 1, Qt::AlignCenter);
     categoriesLabelLayout->setSpacing(5);
 
@@ -99,6 +99,7 @@ QWidget *ChooseOptionWidget::categoriesWidget() {
 
     auto mainWidget = new QWidget(this);
     auto categoryLayout = new QVBoxLayout(mainWidget);
+    categoryLayout->addWidget(operationLabelButton, 0, Qt::AlignRight);
     categoryLayout->addWidget(categoriesLabelWidget);
     categoryLayout->addWidget(categoryList);
 
