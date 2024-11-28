@@ -143,6 +143,9 @@ public:
 
     QWidget *currentOperationWidget = nullptr;
     AnimatedButton *logOutButton;
+    QListWidget *operationsList;
+    QVBoxLayout *operationLayout;
+    QWidget *operationWidget;
 
 protected:
 
@@ -154,11 +157,6 @@ protected:
     }
 
     virtual void handleSpecificOperation(OperationType operationValue) = 0;
-
-private:
-    QListWidget *operationsList;
-    QVBoxLayout *operationLayout;
-    QWidget *operationWidget;
 
 };
 
