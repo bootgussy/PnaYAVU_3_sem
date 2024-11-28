@@ -56,6 +56,7 @@ add_executable(CoffeeHouseSoftware
     custommessagebox.h custommessagebox.cpp
     changeoptiondiscount.h changeoptiondiscount.cpp
     chooseoptionwidget.h chooseoptionwidget.cpp
+    leadershipwindow.h leadershipwindow.cpp
 
 
 

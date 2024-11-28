@@ -59,6 +59,8 @@ protected:
         if (confirmDialog.exec() == QMessageBox::Yes) {
             updateCallback(value);
             CustomMessageBox::information(parent, "Успешно", attributeNameSucessfull + " успешно изменена!");
+
+            stackedWidget->setCurrentIndex(0);
             return true;
         }
         return false;
