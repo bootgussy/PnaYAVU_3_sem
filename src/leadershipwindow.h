@@ -2,8 +2,8 @@
 #define LEADERSHIPWINDOW_H
 
 #include "AnimatedButton.h"
-#include "ChangeOptionPrice.h"
-#include "ChangeOptionDiscount.h"
+#include "changeoptionprice.h"
+#include "changeoptiondiscount.h"
 #include <QWidget>
 #include <QListWidget>
 #include <QVBoxLayout>
@@ -125,7 +125,7 @@ public:
 
         setLayout(layout);
 
-        connect(operationsList, &QListWidget::itemClicked, this, [this](QListWidgetItem *item) {
+        connect(operationsList, &QListWidget::itemClicked, this, [this](const QListWidgetItem *item) {
             if (currentOperationWidget) {
                 operationLayout->removeWidget(currentOperationWidget);
                 currentOperationWidget->deleteLater();
@@ -143,9 +143,6 @@ public:
 
 protected:
 
-    QListWidget *operationsList;
-    QVBoxLayout *operationLayout;
-    QWidget *operationWidget;
     QWidget *currentOperationWidget = nullptr;
     AnimatedButton *logOutButton;
 
@@ -157,6 +154,12 @@ protected:
     }
 
     virtual void handleSpecificOperation(OperationType operationValue) = 0;
+
+private:
+    QListWidget *operationsList;
+    QVBoxLayout *operationLayout;
+    QWidget *operationWidget;
+
 };
 
 #endif // LEADERSHIPWINDOW_H
