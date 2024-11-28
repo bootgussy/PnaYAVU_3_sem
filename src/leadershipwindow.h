@@ -141,10 +141,10 @@ public:
         });
     }
 
-protected:
-
     QWidget *currentOperationWidget = nullptr;
     AnimatedButton *logOutButton;
+
+protected:
 
     void addItemToList(const QString &itemName, OperationType operationValue)
     {
