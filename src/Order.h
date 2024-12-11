@@ -10,4 +10,5 @@ public:
 
     void addOption(const MenuOption& item);
     void deleteOption(int index);
+    void clearOrder();
 };

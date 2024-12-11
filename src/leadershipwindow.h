@@ -23,16 +23,15 @@ public:
         QString cellStyle = "padding: 12px;";
 
         auto headerLayout = new QHBoxLayout();
-
         auto statusWidget = new QWidget(this);
         auto statusLayout = new QHBoxLayout(statusWidget);
-        auto statusLabel = new AnimatedButton(statusText, "white", "black", "color: black;", this);
+        auto statusLabel = new AnimatedButton(statusText, "white", "black", "white", "color: black;", this);
         statusLayout->addWidget(statusLabel, 1, Qt::AlignLeft);
         statusWidget->setStyleSheet(cellStyle);
 
         auto logOutWidget = new QWidget(this);
         auto logOutLayout = new QHBoxLayout(logOutWidget);
-        logOutButton = new AnimatedButton("Выход", "#EDC676", "#EDC676", "padding: 12px;", this);
+        logOutButton = new AnimatedButton("Выход", "#EDC676", "#EDC676", "#EDC676", "padding: 12px;", this);
         logOutLayout->addWidget(logOutButton, 1, Qt::AlignCenter);
 
         headerLayout->addWidget(statusWidget, 0, Qt::AlignLeft);
@@ -49,8 +48,7 @@ public:
 
         auto operationsLabelWidget = new QWidget(this);
         auto operationsLabelLayout = new QHBoxLayout(operationsLabelWidget);
-        auto operationsLabelButton = new AnimatedButton("Операции", "white", "black", "color: black;", this);
-        operationsLabelButton->setEnabled(false);
+        auto operationsLabelButton = new AnimatedButton("Операции", "white", "black", "white", "color: black;", this);
         operationsLabelLayout->addWidget(operationsLabelButton, 1, Qt::AlignCenter);
         operationsLabelWidget->setStyleSheet(cellStyle);
 

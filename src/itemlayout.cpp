@@ -14,7 +14,7 @@ ItemLayout::ItemLayout(const MenuOption &item, QWidget *parent)
     nameLabel->setStyleSheet("border: 1px solid lightgray; background: lightgray;");
 
     discountLabel = new QLabel(QString("Скидка %1%").arg(item.getDiscount()));
-    newPriceLabel = new QLabel(QString("$%1").arg(item.getPrice() - (item.getPrice() / 100 * item.getDiscount())));
+    newPriceLabel = new QLabel(QString("$%1").arg(round((item.getPrice() - (item.getPrice() / 100 * item.getDiscount())) * 100) / 100));
     priceLabel = new QLabel(QString("$%1").arg(item.getPrice()));
 
     if (item.getDiscount() == 0) {
@@ -44,4 +44,8 @@ ItemLayout::ItemLayout(const MenuOption &item, QWidget *parent)
 
 MenuOption ItemLayout::getMenuItem() const {
     return menuItem;
+}
+
+std::string ItemLayout::getName() const {
+    return menuItem.getName();
 }

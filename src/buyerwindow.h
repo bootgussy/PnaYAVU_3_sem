@@ -35,6 +35,10 @@ private:
     QScrollArea *menuScrollArea;
     QWidget *menuWidget;
     QGridLayout *menuLayout;
+    AnimatedButton *pointsButton;
+    AnimatedButton *cartButton;
+    QHBoxLayout *cartLayout;
+    QWidget *cartWidget;
 
     void populateCategories();
 
@@ -42,6 +46,9 @@ signals:
     void logoutButtonClicked();
     void cartButtonClicked();
     void orderUpdated();
+
+public slots:
+    void updatePointsDisplay(int newPoints);
 };
 
 #endif // BUYERWINDOW_H

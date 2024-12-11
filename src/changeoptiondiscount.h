@@ -2,7 +2,6 @@
 #define CHANGEOPTIONDISCOUNT_H
 
 #include "chooseoptionwidget.h"
-#include "Manager.h"
 
 class ChangeOptionDiscount : public ChooseOptionWidget {
     Q_OBJECT
@@ -11,9 +10,8 @@ public:
     explicit ChangeOptionDiscount(QWidget *parent = nullptr);
 
 private:
-    Manager manager;
-
     QWidget *editWidget() override;
+    QLineEdit *discountInput;
 };
 
 #endif // CHANGEOPTIONDISCOUNT_H

@@ -23,8 +23,10 @@ void ManagerWindow::handleSpecificOperation(int operationIndex)
     case 3:
         break;
     case 4:
+        currentOperationWidget = new EditCategories(this);
         break;
     case 5:
+        currentOperationWidget = new EditOptions(this);
         break;
     default:
         break;

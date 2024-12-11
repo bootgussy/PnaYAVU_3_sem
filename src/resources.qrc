@@ -4,5 +4,6 @@
         <file>pics/back_arrow.png</file>
         <file>pics/cart_icon.png</file>
         <file>pics/points_icon.png</file>
+        <file>pics/delete_icon.png</file>
     </qresource>
 </RCC>

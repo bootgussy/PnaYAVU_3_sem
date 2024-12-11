@@ -4,6 +4,10 @@
 #include "leadershipwindow.h"
 #include "changeoptionprice.h"
 #include "changeoptiondiscount.h"
+
+#include "editcategories.h"
+#include "editoptions.h"
+
 #include <QMetaType>
 
 class AdminWindow : public LeadershipWindow<int> {

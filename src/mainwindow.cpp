@@ -22,10 +22,10 @@ MainWindow::MainWindow(QWidget *parent)
     logoLabel->setPixmap(QPixmap(":/pics/pics/logo.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     // Кнопки
-    auto signInButton = new AnimatedButton("Вход в аккаунт", "#C28D4B", "#C28D4B", "", this);
+    auto signInButton = new AnimatedButton("Вход в аккаунт", "#C28D4B", "#C28D4B", "#C28D4B", "", this);
     signInButton->setMinimumSize(150, 40);
 
-    auto logInButton = new AnimatedButton("Создать аккаунт", "#C28D4B", "#C28D4B", "background: white; color: #C28D4B", this);
+    auto logInButton = new AnimatedButton("Создать аккаунт", "#C28D4B", "#C28D4B", "#C28D4B", "background: white; color: #C28D4B", this);
     logInButton->setMinimumSize(150, 40);
 
     // Горизонтальный макет для кнопок
@@ -62,7 +62,10 @@ MainWindow::MainWindow(QWidget *parent)
         if (currentAccount->getRole() == "Buyer")
         {
             buyerWidget = new BuyerWindow(currentAccount, this);
-            cartWidget = new CartWindow(this);
+            cartWidget = new CartWindow(currentAccount, this);
+
+            connect(cartWidget, &CartWindow::pointsUpdated, buyerWidget, &BuyerWindow::updatePointsDisplay);
+
             stackedWidget->addWidget(buyerWidget);
             stackedWidget->addWidget(cartWidget);
 
@@ -73,12 +76,17 @@ MainWindow::MainWindow(QWidget *parent)
                 buyerWidget->deleteLater();
             });
 
+            connect(cartWidget, &CartWindow::orderFinished, [this]() {
+                stackedWidget->setCurrentIndex(0);
+                buyerWidget->deleteLater();
+            });
+
                 connect(buyerWidget, &BuyerWindow::cartButtonClicked, [this] () {
                     stackedWidget->setCurrentWidget(cartWidget);
                 });
 
                 connect(cartWidget, &CartWindow::backButtonClicked, [this]() {
-                    stackedWidget->setCurrentIndex(3);
+                    stackedWidget->setCurrentWidget(buyerWidget);
                 });
 
                 connect(cartWidget, &CartWindow::orderUpdated, this, [this]() {
@@ -124,13 +132,40 @@ MainWindow::MainWindow(QWidget *parent)
 
         connect(logInWidget, &LogInWindow::logInSuccessful, [this](std::shared_ptr<Account> currentAccount) {
             buyerWidget = new BuyerWindow(currentAccount, this);
+            cartWidget = new CartWindow(currentAccount, this);
+
+            connect(cartWidget, &CartWindow::pointsUpdated, buyerWidget, &BuyerWindow::updatePointsDisplay);
+
             stackedWidget->addWidget(buyerWidget);
+            stackedWidget->addWidget(cartWidget);
 
             stackedWidget->setCurrentWidget(buyerWidget);
 
             connect(buyerWidget, &BuyerWindow::logoutButtonClicked, [this]() {
                 stackedWidget->setCurrentIndex(0);
                 buyerWidget->deleteLater();
+            });
+
+            connect(cartWidget, &CartWindow::orderFinished, [this]() {
+                stackedWidget->setCurrentIndex(0);
+                buyerWidget->deleteLater();
+            });
+
+            connect(buyerWidget, &BuyerWindow::cartButtonClicked, [this] () {
+                stackedWidget->setCurrentWidget(cartWidget);
+            });
+
+            connect(cartWidget, &CartWindow::backButtonClicked, [this]() {
+                stackedWidget->setCurrentWidget(buyerWidget);
+            });
+
+            connect(cartWidget, &CartWindow::orderUpdated, this, [this]() {
+                buyerWidget->updateOrder(cartWidget->getOrder());
+            });
+
+            connect(buyerWidget, &BuyerWindow::orderUpdated, this, [this]() {
+                cartWidget->updateOrder(buyerWidget->getOrder());
+                cartWidget->updateTotalCostLabel(buyerWidget->getOrder().totalCost);
             });
         });
 
