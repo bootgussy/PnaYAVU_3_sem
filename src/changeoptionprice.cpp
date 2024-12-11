@@ -4,7 +4,7 @@ ChangeOptionPrice::ChangeOptionPrice(QWidget *parent)
     : ChooseOptionWidget(parent)
 {
     auto mainLayout = new QVBoxLayout(this);
-    operationLabelButton = new AnimatedButton("     Изменить цену     ", "white", "black", "color: black; padding: 12px;", this);
+    operationLabelButton = new AnimatedButton("Изменить цену", "white", "black", "color: black;  padding: 12px;", this);
 
 
     stackedWidget = new QStackedWidget(this);
