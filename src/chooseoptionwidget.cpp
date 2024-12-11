@@ -25,7 +25,7 @@ void ChooseOptionWidget::populateMenuItems(int categoryId) {
 
         auto contentLayout = new ItemLayout(item);
         itemLayout->addLayout(contentLayout);
-        changeButton = new AnimatedButton("Изменить", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
+        changeButton = new AnimatedButton(changeText, "#C28D4B", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
         itemLayout->addWidget(changeButton, 0, Qt::AlignCenter);
 
         itemWidget->setStyleSheet(R"(
@@ -87,10 +87,9 @@ void ChooseOptionWidget::populateMenuItems(int categoryId) {
 
 QWidget *ChooseOptionWidget::categoriesWidget() {
     auto categoriesLabelWidget = new QWidget(this);
-    auto categoriesLabelLayout = new QVBoxLayout(categoriesLabelWidget);
-    auto categoriesLabelButton = new AnimatedButton("     Категории     ", "white", "black", "color: black; padding: 12px;", this);
-    categoriesLabelButton->setEnabled(false);
-    categoriesLabelLayout->addWidget(operationLabelButton, 1, Qt::AlignCenter);
+    auto categoriesLabelLayout = new QHBoxLayout(categoriesLabelWidget);
+
+    auto categoriesLabelButton = new AnimatedButton("     Категории     ", "white", "black", "white", "color: black; padding: 12px;", this);
     categoriesLabelLayout->addWidget(categoriesLabelButton, 1, Qt::AlignCenter);
     categoriesLabelLayout->setSpacing(5);
 
@@ -99,6 +98,7 @@ QWidget *ChooseOptionWidget::categoriesWidget() {
 
     auto mainWidget = new QWidget(this);
     auto categoryLayout = new QVBoxLayout(mainWidget);
+    categoryLayout->addWidget(operationLabelButton, 0, Qt::AlignRight);
     categoryLayout->addWidget(categoriesLabelWidget);
     categoryLayout->addWidget(categoryList);
 
@@ -107,8 +107,8 @@ QWidget *ChooseOptionWidget::categoriesWidget() {
     connect(categoryList, &QListWidget::itemClicked, [this](QListWidgetItem *item) {
         int categoryId = item->data(Qt::UserRole).toInt();
 
+        categoryLabel->setText("Категория: " + item->text());
         categoryLabelButton->setText("Категория: " + item->text());
-        categoryLabelButton->update();
         populateMenuItems(categoryId);
 
         stackedWidget->setCurrentIndex(1);
@@ -120,20 +120,19 @@ QWidget *ChooseOptionWidget::categoriesWidget() {
 QWidget* ChooseOptionWidget::optionSelection() {
     auto mainWidget = new QWidget(this);
 
-    auto optionLayout = new QVBoxLayout(mainWidget);
+    optionLayout = new QVBoxLayout(mainWidget);
 
-    auto headerLayout = new QHBoxLayout();
+    headerLayout = new QHBoxLayout();
 
     auto toCategoriesBackButton = new QPushButton(this);
     toCategoriesBackButton->setIcon(QIcon(":/pics/pics/back_arrow.png"));
     toCategoriesBackButton->setIconSize(QSize(24, 24));
     toCategoriesBackButton->setFlat(true);
 
-    categoryLabelButton = new AnimatedButton("Категория: ", "white", "black", "color: black; padding: 12px;", this);
-    categoryLabelButton->setEnabled(false);
+    categoryLabel = new AnimatedButton("Категория: ", "white", "black", "white", "color: black; padding: 12px;", this);
 
     headerLayout->addWidget(toCategoriesBackButton, 0, Qt::AlignLeft);
-    headerLayout->addWidget(categoryLabelButton, 0, Qt::AlignRight);
+    headerLayout->addWidget(categoryLabel, 0, Qt::AlignRight);
 
     optionsScrollArea = new QScrollArea(this);
     optionsWidget = new QWidget(this);

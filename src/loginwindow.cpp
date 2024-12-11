@@ -43,10 +43,23 @@ LogInWindow::LogInWindow(QWidget *parent)
     editLayout->setSpacing(10);
     editLayout->setAlignment(Qt::AlignCenter);
 
-    auto logInButton = new AnimatedButton("Создать аккаунт", "#C28D4B", "#C28D4B", "", this);
+    auto logInButton = new AnimatedButton("Создать аккаунт", "#C28D4B", "white", "#C28D4B", "", this);
     logInButton->setFixedHeight(40);
     logInButton->setMinimumWidth(150);
     logInButton->setMaximumWidth(300);
+
+    logInButton->setEnabled(false);
+
+    auto validateInputs = [logInButton, loginEdit, passwordEdit, passwordCheckEdit]() {
+        bool isLoginFilled = !loginEdit->text().trimmed().isEmpty();
+        bool isPasswordFilled = !passwordEdit->text().trimmed().isEmpty();
+        bool isPasswordCheckFilled = !passwordCheckEdit->text().trimmed().isEmpty();
+        logInButton->setEnabled(isLoginFilled && isPasswordFilled && isPasswordCheckFilled);
+    };
+
+    connect(loginEdit, &QLineEdit::textChanged, validateInputs);
+    connect(passwordEdit, &QLineEdit::textChanged, validateInputs);
+    connect(passwordCheckEdit, &QLineEdit::textChanged, validateInputs);
 
     auto errorLabel = new QLabel(this);
     errorLabel->setText("Пароль не совпадает");

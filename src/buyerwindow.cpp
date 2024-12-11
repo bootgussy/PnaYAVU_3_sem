@@ -22,19 +22,18 @@ BuyerWindow::BuyerWindow(std::shared_ptr<Account> currentAccount, QWidget *paren
 
     auto pointsWidget = new QWidget(this);
     auto pointsLayout = new QHBoxLayout(pointsWidget);
-    auto pointsButton = new AnimatedButton("   Баллы:  " + QString::number(account->getPoints()) + " ", "white", "black", "color: black;", this);
+    pointsButton = new AnimatedButton("   Баллы:  " + QString::number(account->getPoints()) + " ", "white", "black", "white", "color: black;", this);
     pointsButton->setIcon(QIcon(":/pics/pics/points_icon.png"));
     pointsButton->setIconSize(QSize(24, 24));
-    pointsButton->setEnabled(false);
     pointsLayout->addWidget(pointsButton, 1, Qt::AlignCenter);
     pointsWidget->setStyleSheet(cellStyle);
     headerLayout->addWidget(pointsWidget, 1, Qt::AlignLeft);
 
     auto buttonsLayout = new QHBoxLayout();
 
-    auto cartWidget = new QWidget(this);
-    auto cartLayout = new QHBoxLayout(cartWidget);
-    auto cartButton = new AnimatedButton("   Корзина", "#C28D4B", "#C28D4B", "color: white;", this);
+    cartWidget = new QWidget(this);
+    cartLayout = new QHBoxLayout(cartWidget);
+    cartButton = new AnimatedButton("   Корзина  |  0", "#C28D4B", "#C28D4B", "#C28D4B", "color: white;", this);
     cartButton->setIcon(QIcon(":/pics/pics/cart_icon.png"));
     cartButton->setIconSize(QSize(24, 24));
     cartLayout->addWidget(cartButton, 1, Qt::AlignCenter);
@@ -48,7 +47,7 @@ BuyerWindow::BuyerWindow(std::shared_ptr<Account> currentAccount, QWidget *paren
 
     auto logoutWidget = new QWidget(this);
     auto logoutLayout = new QHBoxLayout(logoutWidget);
-    auto logoutButton = new AnimatedButton("Выход", "#EDC676", "#EDC676", "padding: 12px;", this);
+    auto logoutButton = new AnimatedButton("Выход", "#EDC676", "#EDC676", "#EDC676", "padding: 12px;", this);
     logoutLayout->addWidget(logoutButton, 1, Qt::AlignCenter);
     buttonsLayout->addWidget(logoutWidget, 1, Qt::AlignRight);
 
@@ -61,8 +60,7 @@ BuyerWindow::BuyerWindow(std::shared_ptr<Account> currentAccount, QWidget *paren
 
     auto categoriesLabelWidget = new QWidget(this);
     auto categoriesLabelLayout = new QHBoxLayout(categoriesLabelWidget);
-    auto categoriesLabelButton = new AnimatedButton("     Категории     ", "white", "black", "color: black;", this);
-    categoriesLabelButton->setEnabled(false);
+    auto categoriesLabelButton = new AnimatedButton("     Категории     ", "white", "black", "white", "color: black;", this);
     categoriesLabelLayout->addWidget(categoriesLabelButton, 1, Qt::AlignCenter);
     categoriesLabelWidget->setStyleSheet(cellStyle);
 
@@ -140,7 +138,7 @@ void BuyerWindow::populateMenuItems(int categoryId) {
         auto contentLayout = new ItemLayout(item, this);
         itemLayout->addLayout(contentLayout);
 
-        auto addToCartButton = new AnimatedButton("Добавить в заказ", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
+        auto addToCartButton = new AnimatedButton("Добавить в заказ", "#C28D4B", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
         itemLayout->addWidget(addToCartButton, 0, Qt::AlignCenter);
 
         itemWidget->setLayout(itemLayout);
@@ -157,6 +155,7 @@ void BuyerWindow::populateMenuItems(int categoryId) {
         connect(addToCartButton, &QPushButton::clicked, [this, item]() {
             order.addOption(item);
             emit orderUpdated();
+            updateOrder(order);
         });
 
         itemWidget->setMaximumHeight(250);
@@ -182,4 +181,10 @@ Order BuyerWindow::getOrder() const {
 void BuyerWindow::updateOrder(const Order& newOrder)
 {
     order = newOrder;
+
+    cartButton->setText("   Корзина  |  " + QString::number(order.orderedOptions.size()));
+}
+
+void BuyerWindow::updatePointsDisplay(int newPoints) {
+    pointsButton->setText("   Баллы:  " + QString::number(newPoints) + " ");
 }

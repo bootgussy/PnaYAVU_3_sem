@@ -40,10 +40,21 @@ SignInWindow::SignInWindow(QWidget *parent)
     editLayout->setSpacing(10);
     editLayout->setAlignment(Qt::AlignCenter);
 
-    auto signInButton = new AnimatedButton("Войти", "#C28D4B", "#C28D4B", "", this);
+    auto signInButton = new AnimatedButton("Войти", "#C28D4B", "white", "#C28D4B", "", this);
     signInButton->setFixedHeight(40);
     signInButton->setMinimumWidth(150);
     signInButton->setMaximumWidth(300);
+
+    signInButton->setEnabled(false);
+
+    auto validateInputs = [signInButton, loginEdit, passwordEdit]() {
+        bool isLoginFilled = !loginEdit->text().trimmed().isEmpty();
+        bool isPasswordFilled = !passwordEdit->text().trimmed().isEmpty();
+        signInButton->setEnabled(isLoginFilled && isPasswordFilled);
+    };
+
+    connect(loginEdit, &QLineEdit::textChanged, validateInputs);
+    connect(passwordEdit, &QLineEdit::textChanged, validateInputs);
 
     auto errorLabel = new QLabel(this);
     errorLabel->setText("Неверный логин или пароль");

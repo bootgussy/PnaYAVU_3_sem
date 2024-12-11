@@ -32,14 +32,10 @@ add_executable(CoffeeHouseSoftware
     loginwindow.h loginwindow.cpp loginwindow.ui
     pics/back_arrow.png
     Account.h Account.cpp
-    Admin.h Admin.cpp
-    Buyer.h Buyer.cpp
     Database.h Database.cpp
-    Manager.h Manager.cpp
     Menu.h Menu.cpp
     MenuOption.h MenuOption.cpp
     Order.h Order.cpp
-    Person.h
     sqlite3.h
     sqlite3.c
     CoffeeHouse.db
@@ -56,6 +52,12 @@ add_executable(CoffeeHouseSoftware
     custommessagebox.h custommessagebox.cpp
     changeoptiondiscount.h changeoptiondiscount.cpp
     chooseoptionwidget.h chooseoptionwidget.cpp
+    leadershipwindow.h leadershipwindow.cpp
+    editcategories.h editcategories.cpp
+    editoptions.h editoptions.cpp
+    exceptionhandler.h
+    editcombos.h editcombos.cpp
+    editaccounts.h editaccounts.cpp
 
 
 

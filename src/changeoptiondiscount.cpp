@@ -5,7 +5,8 @@ ChangeOptionDiscount::ChangeOptionDiscount(QWidget *parent)
     : ChooseOptionWidget(parent)
 {
     auto mainLayout = new QVBoxLayout(this);
-    operationLabelButton = new AnimatedButton("     Изменить скидку     ", "white", "black", "color: black; padding: 12px;", this);
+    operationLabelButton = new AnimatedButton("Изменить скидку", "white", "black", "white", "color: black; padding: 12px;", this);
+    changeText = QString::fromUtf8("Изменить");
 
     stackedWidget = new QStackedWidget(this);
 
@@ -30,16 +31,21 @@ QWidget *ChangeOptionDiscount::editWidget() {
     auto changingDiscountWidget = new QWidget(this);
     auto changingDiscountLayout = new QVBoxLayout(changingDiscountWidget);
 
-    categoryLabelButton = new AnimatedButton("Категория: ", "white", "black", "color: black; padding: 12px;", this);
-    categoryLabelButton->setEnabled(false);
+    categoryLabelButton = new AnimatedButton("Категория: ", "white", "black", "white", "color: black; padding: 12px;", this);
 
-    auto discountInput = new QLineEdit(this);
+    discountInput = new QLineEdit(this);
     discountInput->setPlaceholderText("Новая скидка");
 
     discountInput->setMinimumHeight(25);
     discountInput->setMinimumWidth(200);
 
-    auto confirmButton = new AnimatedButton("Подтвердить иземенение", "#C28D4B", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
+    auto confirmButton = new AnimatedButton("Подтвердить иземенение", "#C28D4B", "white", "#C28D4B", "color: white; padding: 3px 7px 3px 7px;", this);
+
+    confirmButton->setEnabled(false);
+
+    connect(discountInput, &QLineEdit::textChanged, confirmButton, [confirmButton](const QString &text) {
+        confirmButton->setEnabled(!text.trimmed().isEmpty());
+    });
 
     changingDiscountLayout->addWidget(categoryLabelButton, 0, Qt::AlignHCenter);
     changingDiscountLayout->addWidget(discountInput, 0, Qt::AlignHCenter);
@@ -59,13 +65,16 @@ QWidget *ChangeOptionDiscount::editWidget() {
     changeLayout->addLayout(currentItemLayout);
     changeLayout->addWidget(changingDiscountWidget);
 
-    connect(confirmButton, &QPushButton::clicked, [this, discountInput]() {
+    connect(confirmButton, &QPushButton::clicked, [this]() {
         bool ok;
-        double newDiscount = discountInput->text().toDouble(&ok);
+        double newDiscount = discountInput->text().toInt(&ok);
 
-        if (ok && newDiscount >= 0 && newDiscount < 100) {
-            processInputAndConfirm<double>(this, "скидку", "Скидка", newDiscount, [this](double discount) {
-                manager.changeDiscount(currentOption.getName(), static_cast<int>(discount));
+        if(!ok) {
+            CustomMessageBox::warning(this, "Ошибка", "Cкидка должна быть целым числом!");
+        }
+        else if (newDiscount >= 0 && newDiscount < 100) {
+            processConfirm<int>(this, "скидку", "Скидка", newDiscount, discountInput, [this](int discount) {
+                Database::getInstance()->setDiscount(currentOption.getName(), static_cast<int>(discount));
             });
         } else {
             CustomMessageBox::warning(this, "Ошибка", "Введите корректную скидку!");

@@ -33,22 +33,26 @@ protected:
     AnimatedButton *operationLabelButton;
     AnimatedButton *changeButton;
     AnimatedButton *categoryLabelButton;
+    AnimatedButton *categoryLabel;
     QWidget *currentItemWidget;
     QVBoxLayout *currentItemLayout;
     QHBoxLayout *changeLayout;
     ItemLayout *contentLayout;
     QStackedWidget *stackedWidget;
+    QHBoxLayout *headerLayout;
+    QVBoxLayout *optionLayout;
+    QString changeText;
 
     MenuOption currentOption;
     Menu menu;
 
     void populateMenuItems(int categoryId);
-    QWidget *categoriesWidget();
+    virtual QWidget *categoriesWidget();
     QWidget *optionSelection();
     virtual QWidget *editWidget() = 0;
 
     template <typename T>
-    bool processInputAndConfirm(QWidget *parent, const QString &attributeNameClarify,  const QString &attributeNameSucessfull, T value,
+    bool processConfirm(QWidget *parent, const QString &attributeNameClarify,  const QString &attributeNameSucessfull, T value, QLineEdit *input,
                                                  const std::function<void(T)> &updateCallback) const {
         CustomMessageBox confirmDialog;
         confirmDialog.setWindowTitle("Подтверждение");
@@ -59,6 +63,9 @@ protected:
         if (confirmDialog.exec() == QMessageBox::Yes) {
             updateCallback(value);
             CustomMessageBox::information(parent, "Успешно", attributeNameSucessfull + " успешно изменена!");
+            input->clear();
+
+            stackedWidget->setCurrentIndex(0);
             return true;
         }
         return false;

@@ -18,3 +18,9 @@ void Order::deleteOption(int index)
 
     orderedOptions.erase(orderedOptions.cbegin() + index);
 }
+
+void Order::clearOrder()
+{
+    orderedOptions.clear();
+    totalCost = 0;
+}

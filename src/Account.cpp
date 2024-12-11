@@ -1,5 +1,6 @@
 #include "Account.h"
 #include "Database.h"
+#include <cmath>
 
 Account::Account(const std::string& login, const std::string& password, int points, const std::string& role)
     : accountLogin(login), accountPassword(password), accountPoints(points), accountRole(role) {}

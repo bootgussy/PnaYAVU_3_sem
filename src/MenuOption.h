@@ -13,5 +13,6 @@ public:
     std::string getName() const;
     double getPrice() const;
     int getDiscount() const;
+
     bool operator!=(const MenuOption& right) const;
 };

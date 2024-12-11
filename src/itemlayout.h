@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <string>
 #include "marqueelabel.h"
 #include "MenuOption.h"
 
@@ -18,6 +19,7 @@ public:
     QLabel *newPriceLabel;
     QLabel *priceLabel;
 
+    std::string getName() const;
 private:
     MenuOption menuItem;
 };
